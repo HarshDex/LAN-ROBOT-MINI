@@ -1,0 +1,163 @@
+[gd_scene load_steps=20 format=3 uid="uid://8tsdxyyikwsd"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_mechc"]
+[ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="2_61hjo"]
+[ext_resource type="AudioStream" uid="uid://c1lxluli0rm6l" path="res://sounds/jump.wav" id="3_hkroh"]
+[ext_resource type="AudioStream" uid="uid://2dp71ebnpdwy" path="res://sounds/explosion.wav" id="4_5i2vb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i146n"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(208, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sohin"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(224, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uud11"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(240, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d407q"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(256, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2crh"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(288, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aefh5"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(304, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o86wb"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(320, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou032"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(336, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_misxa"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(352, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jndf"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(368, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yyxb"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(384, 50, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aphwl"]
+atlas = ExtResource("2_61hjo")
+region = Rect2(400, 50, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tb1c4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i146n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sohin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uud11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d407q")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2crh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aefh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o86wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou032")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_misxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jndf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yyxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aphwl")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 14.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t6o3d"]
+radius = 8.0
+height = 25.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ukisy"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite2D:frame")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("AnimatedSprite2D:animation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("AnimatedSprite2D:flip_h")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("AnimatedSprite2D:flip_v")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath(".:process_thread_group")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath(".:push_force")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 5
+script = ExtResource("1_mechc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tb1c4")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("CapsuleShape2D_t6o3d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -115)
+limit_left = 0
+limit_top = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ukisy")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hkroh")
+volume_db = -10.0
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5i2vb")

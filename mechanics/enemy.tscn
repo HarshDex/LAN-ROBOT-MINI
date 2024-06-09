@@ -1,0 +1,170 @@
+[gd_scene load_steps=19 format=3 uid="uid://cl1m8jq77er2a"]
+
+[ext_resource type="Script" path="res://mechanics/enemy.gd" id="1_n24xj"]
+[ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="2_ql8dy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ict65"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(208, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo5pe"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(224, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6th2p"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(240, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad5wd"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(256, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cggm0"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(288, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmjin"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(304, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iowcy"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(320, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycj2l"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(336, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dhbap"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(352, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itejc"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(368, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxu6f"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(384, 82, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdfue"]
+atlas = ExtResource("2_ql8dy")
+region = Rect2(400, 82, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7bpqr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ict65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo5pe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6th2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad5wd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cggm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmjin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iowcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycj2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dhbap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itejc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxu6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdfue")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 16.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3wj2"]
+size = Vector2(20, 25)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5nayu"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite:frame")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:process_thread_group")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("AnimatedSprite:flip_h")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("AnimatedSprite:flip_v")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6tcep"]
+size = Vector2(30, 25)
+
+[node name="Enemy" type="CharacterBody2D"]
+up_direction = Vector2(0.707107, 0.707107)
+script = ExtResource("1_n24xj")
+speed = 40
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7bpqr")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_m3wj2")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_5nayu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_bottom = 0
+position_smoothing_enabled = true
+
+[node name="RayCastDownLeft" type="RayCast2D" parent="."]
+position = Vector2(-7, 10)
+target_position = Vector2(2.08165e-12, 12)
+
+[node name="RayCastDownRight" type="RayCast2D" parent="."]
+position = Vector2(6, 10)
+target_position = Vector2(2.08165e-12, 12)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-15, 2.08165e-12)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+rotation = 3.14159
+target_position = Vector2(-15, 2.08165e-12)
+
+[node name="DeathArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathArea2D"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_6tcep")

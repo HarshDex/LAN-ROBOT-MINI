@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbs4pgaj4fme0"]
+
+[ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="1_160ie"]
+[ext_resource type="Script" path="res://spring.gd" id="1_vnonq"]
+[ext_resource type="Texture2D" uid="uid://dklva0yht6ixu" path="res://assets/spring.png" id="3_ks8fn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjvlh"]
+size = Vector2(16, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ma03d"]
+size = Vector2(14, 12)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_it83p"]
+properties/0/path = NodePath("DampedSpringJoint2D:process_thread_group")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Spring" type="Node2D"]
+script = ExtResource("1_vnonq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_sjvlh")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_160ie")
+region_enabled = true
+region_rect = Rect2(96, 160, 16, 16)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(0, 67)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_ma03d")
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+texture = ExtResource("1_160ie")
+region_enabled = true
+region_rect = Rect2(96, 192, 16, 16)
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="."]
+visible = false
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../RigidBody2D")
+length = 60.0
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, 10.9464)
+scale = Vector2(1, 0.982143)
+points = PackedVector2Array(2.08165e-12, 2.08165e-12, 2.08165e-12, 50)
+width = 3.0
+texture = ExtResource("3_ks8fn")
+texture_mode = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_it83p")

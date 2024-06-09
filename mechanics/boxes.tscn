@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvky4tuaenctr"]
+
+[ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="1_d14q6"]
+[ext_resource type="Texture2D" uid="uid://ek5yumquq217" path="res://icon.svg" id="1_mtlm0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8d4vp"]
+size = Vector2(16, 16)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kd1lj"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:process_thread_group")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath(".:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[node name="Boxes" type="RigidBody2D" groups=["boxes"]]
+mass = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.49012e-07, -5.96046e-08)
+scale = Vector2(1.2, 1.2)
+shape = SubResource("RectangleShape2D_8d4vp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_d14q6")
+region_enabled = true
+region_rect = Rect2(112, 208, 16, 16)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_kd1lj")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(0.25, 0.25)
+energy = 2.0
+shadow_enabled = true
+texture = ExtResource("1_mtlm0")
+texture_scale = 0.9

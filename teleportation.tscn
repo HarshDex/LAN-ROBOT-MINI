@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6lpkvs7f2b82"]
+
+[ext_resource type="Texture2D" uid="uid://cetwxelreokmh" path="res://assets/particles/circle_04.png" id="1_4conn"]
+[ext_resource type="AudioStream" uid="uid://btyywqt0edjcd" path="res://sounds/power_up.wav" id="2_ocff5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1m13"]
+size = Vector2(84.9819, 129.116)
+
+[sub_resource type="Curve" id="Curve_t5vde"]
+_data = [Vector2(0, 0.189278), 0.0, 0.0, 0, 0, Vector2(0.992268, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1jwm3"]
+curve = SubResource("Curve_t5vde")
+
+[sub_resource type="Curve" id="Curve_5hqr3"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ipq2o"]
+curve = SubResource("Curve_5hqr3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gtoaq"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(2.08165e-12, 1, 1)
+emission_ring_height = -9.0
+emission_ring_radius = 80.0
+emission_ring_inner_radius = 0.0
+inherit_velocity_ratio = 20.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+tangential_accel_min = 30.0
+tangential_accel_max = 30.0
+tangential_accel_curve = SubResource("CurveTexture_ipq2o")
+damping_max = 20.0
+scale_curve = SubResource("CurveTexture_1jwm3")
+
+[sub_resource type="Animation" id="Animation_6jfcx"]
+resource_name = "rotate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.18, 0.18), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e63wg"]
+_data = {
+"rotate": SubResource("Animation_6jfcx")
+}
+
+[node name="Teleportation" type="Area2D"]
+scale = Vector2(0.2, 0.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.48051, 3.08997e-07)
+shape = SubResource("RectangleShape2D_h1m13")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+amount = 70
+process_material = SubResource("ParticleProcessMaterial_gtoaq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1.5, 1.5, 1.5, 1)
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_4conn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_e63wg")
+}
+autoplay = "rotate"
+
+[node name="TeleportSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ocff5")
+volume_db = -10.0

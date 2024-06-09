@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2mxagl7degeg"]
+
+[ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="1_17rpk"]
+[ext_resource type="Script" path="res://mechanics/platform.gd" id="1_f74qp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68vg0"]
+size = Vector2(48, 4)
+
+[node name="Platform" type="AnimatableBody2D"]
+script = ExtResource("1_f74qp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_17rpk")
+region_enabled = true
+region_rect = Rect2(112, 48, 48, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_68vg0")
