@@ -122,7 +122,7 @@ func _on_death_area_body_entered(body):
 @rpc("any_peer", "call_local")
 func player_died(player_id):
 	# Respawn both players at the last checkpoint or spawn points
-	$ResetLevel.play("reset")
+	$ResetLevel.play("reset");
 	var checkpoint_position = load_checkpoint()
 	for player in get_tree().get_nodes_in_group("player"):
 		var peer_id = int(str(player.name).replace("player_", ""))
@@ -180,9 +180,15 @@ func _on_door_trigger_3_body_entered(body):
 	$DoorNodes/DoorTrigger3.visible = false
 	
 func _on_door_trigger_4_body_entered(body):
-	print('trigger 3 activated')
+	print('trigger 4 activated')
 	$DoorNodes/DoorAnimation.play("door4")
 	$DoorNodes/DoorTrigger4.visible = false
+	
+func _on_door_trigger_5_body_entered(body):
+	print('trigger 4 activated')
+	$DoorNodes/DoorAnimation.play("door5")
+	$DoorNodes/DoorTrigger5.visible = false
+
 
 #<--- Door Related Code ---->
 
@@ -283,7 +289,15 @@ func _on_lazer_trigger_weight_body_exited(body):
 		$LazerWeights/Laser.set_scale(Vector2(2, 1))
 		
 
+func _on_death_laser_body_entered(body):
+	print("Player dead af")
+	if body.is_in_group("player"):
+		print("death")
+		var player_id = int(str(body.name).replace("player_", ""))
+		body.rpc("player_died", player_id)
+		
 #<--- DoorWeight Lazer Related Code ---->
+
 
 
 
