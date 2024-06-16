@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://mmp2pmo0vtin"]
+[gd_scene load_steps=60 format=3 uid="uid://mmp2pmo0vtin"]
 
 [ext_resource type="Script" path="res://levels/level2/Level2.gd" id="1_oo4rn"]
 [ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="2_1g3ej"]
@@ -7,7 +7,6 @@
 [ext_resource type="Shader" path="res://addons/LaserBeam Node/LaserBeam.gdshader" id="4_ui5b3"]
 [ext_resource type="PackedScene" uid="uid://1blbgueygvxs" path="res://mechanics/enemyFast.tscn" id="5_0vumw"]
 [ext_resource type="Texture2D" uid="uid://3s6bdjalw2jc" path="res://assets/particles/rotated/spark_06_rotated.png" id="5_3w25p"]
-[ext_resource type="PackedScene" uid="uid://dvky4tuaenctr" path="res://mechanics/boxes.tscn" id="6_1nc5f"]
 [ext_resource type="Texture2D" uid="uid://cetwxelreokmh" path="res://assets/particles/circle_04.png" id="7_kyou8"]
 [ext_resource type="AudioStream" uid="uid://btyywqt0edjcd" path="res://sounds/power_up.wav" id="8_yyb0u"]
 [ext_resource type="Script" path="res://mechanics/anti_gravity.gd" id="9_s08dj"]
@@ -29,42 +28,6 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath("DoorNodes/Door1Trigger:position")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ku5o"]
-size = Vector2(48, 4)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_n3ndu"]
-properties/0/path = NodePath("Platform:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-
-[sub_resource type="Animation" id="Animation_xcwfl"]
-resource_name = "platform2"
-length = 10.0
-loop_mode = 1
-
-[sub_resource type="Animation" id="Animation_no6g8"]
-resource_name = "platforms"
-length = 8.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Platform:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4.1, 8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1118, 312), Vector2(1118, 119), Vector2(1118, 312)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_r6q51"]
-_data = {
-"platform2": SubResource("Animation_xcwfl"),
-"platforms": SubResource("Animation_no6g8")
-}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ict65"]
 atlas = ExtResource("2_1g3ej")
@@ -194,68 +157,6 @@ shader = ExtResource("4_ui5b3")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b506y"]
 size = Vector2(62.9994, 3)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_skkrd"]
-atlas = ExtResource("2_1g3ej")
-region = Rect2(112, 96, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xunxy"]
-atlas = ExtResource("2_1g3ej")
-region = Rect2(128, 96, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xxuvv"]
-atlas = ExtResource("2_1g3ej")
-region = Rect2(144, 96, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8wm3c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_skkrd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xunxy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xxuvv")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 6.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yp4kq"]
-size = Vector2(49.6826, 2)
-
-[sub_resource type="Animation" id="Animation_54mig"]
-resource_name = "rotation"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Laser:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 6.28319]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_hiqax"]
-_data = {
-"rotation": SubResource("Animation_54mig")
-}
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kjfhp"]
-properties/0/path = NodePath("AnimationPlayer:process_thread_group")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Laser:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evc8l"]
 size = Vector2(84.9819, 129.116)
@@ -456,110 +357,7 @@ size = Vector2(8, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r032g"]
 size = Vector2(48, 17)
 
-[sub_resource type="Animation" id="Animation_ogsaw"]
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Door2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2120, 296)]
-}
-
-[sub_resource type="Animation" id="Animation_ilnew"]
-resource_name = "door1"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(591, 283), Vector2(591, 345)]
-}
-
-[sub_resource type="Animation" id="Animation_r2qxh"]
-resource_name = "door2"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Door2:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2120, 296), Vector2(2120, 345)]
-}
-
-[sub_resource type="Animation" id="Animation_8l1nm"]
-resource_name = "door3"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Door3:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(3144, 296), Vector2(3144, 345)]
-}
-
-[sub_resource type="Animation" id="Animation_x1cdm"]
-resource_name = "door4"
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Door4:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(3928, 192), Vector2(4007, 192)]
-}
-
-[sub_resource type="Animation" id="Animation_5kmfe"]
-resource_name = "door5"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Door5:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(4137, 71), Vector2(4137, 153)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rghmw"]
-_data = {
-"RESET": SubResource("Animation_ogsaw"),
-"door1": SubResource("Animation_ilnew"),
-"door2": SubResource("Animation_r2qxh"),
-"door3": SubResource("Animation_8l1nm"),
-"door4": SubResource("Animation_x1cdm"),
-"door5": SubResource("Animation_5kmfe")
-}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kcxps"]
 texture = ExtResource("2_1g3ej")
@@ -1697,31 +1495,12 @@ replication_config = SubResource("SceneReplicationConfig_tbirr")
 
 [node name="Platforms" type="Node" parent="."]
 
-[node name="Platform" type="AnimatableBody2D" parent="Platforms"]
-position = Vector2(1126, 312)
-
-[node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform"]
-texture = ExtResource("2_1g3ej")
-region_enabled = true
-region_rect = Rect2(112, 48, 48, 16)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform"]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_3ku5o")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Platforms/Platform"]
-root_path = NodePath("../..")
-replication_config = SubResource("SceneReplicationConfig_n3ndu")
-
 [node name="PlatformAnimation" type="AnimationPlayer" parent="Platforms"]
-libraries = {
-"": SubResource("AnimationLibrary_r6q51")
-}
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" type="CharacterBody2D" parent="Enemies"]
-position = Vector2(1872, 57)
+position = Vector2(300, 265)
 up_direction = Vector2(0.707107, 0.707107)
 script = ExtResource("3_xo25v")
 speed = 40
@@ -1794,40 +1573,7 @@ shape = SubResource("RectangleShape2D_b506y")
 
 [node name="RigidBodies" type="Node" parent="."]
 
-[node name="RigidBody2D" parent="RigidBodies" instance=ExtResource("6_1nc5f")]
-position = Vector2(718, 269)
-
 [node name="RotatingLasers" type="Node" parent="."]
-
-[node name="RotatingLaser" type="Node2D" parent="RotatingLasers"]
-position = Vector2(705, 179)
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="RotatingLasers/RotatingLaser"]
-sprite_frames = SubResource("SpriteFrames_8wm3c")
-animation = &"idle"
-autoplay = "idle"
-
-[node name="Laser" type="Area2D" parent="RotatingLasers/RotatingLaser"]
-
-[node name="Line2D" type="Line2D" parent="RotatingLasers/RotatingLaser/Laser"]
-points = PackedVector2Array(0, 0, 50, 2.08165e-12)
-width = 2.0
-default_color = Color(0.819608, 0.0627451, 0.32549, 1)
-texture_mode = 1
-joint_mode = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RotatingLasers/RotatingLaser/Laser"]
-position = Vector2(25.1587, 0)
-shape = SubResource("RectangleShape2D_yp4kq")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="RotatingLasers/RotatingLaser"]
-libraries = {
-"": SubResource("AnimationLibrary_hiqax")
-}
-autoplay = "rotation"
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="RotatingLasers/RotatingLaser"]
-replication_config = SubResource("SceneReplicationConfig_kjfhp")
 
 [node name="Teleportation" type="Node" parent="."]
 
@@ -1861,7 +1607,7 @@ stream = ExtResource("8_yyb0u")
 volume_db = -10.0
 
 [node name="teleportation2" type="Area2D" parent="Teleportation"]
-position = Vector2(2669, 55)
+position = Vector2(2502, 291)
 scale = Vector2(0.2, 0.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation/teleportation2"]
@@ -1890,7 +1636,7 @@ stream = ExtResource("8_yyb0u")
 volume_db = -10.0
 
 [node name="teleportation3" type="Area2D" parent="Teleportation"]
-position = Vector2(3831, 237)
+position = Vector2(3229, 283)
 scale = Vector2(0.2, 0.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation/teleportation3"]
@@ -1919,7 +1665,7 @@ stream = ExtResource("8_yyb0u")
 volume_db = -10.0
 
 [node name="teleportation4" type="Area2D" parent="Teleportation"]
-position = Vector2(4054, 78)
+position = Vector2(3288, 279)
 scale = Vector2(0.2, 0.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleportation/teleportation4"]
@@ -1973,7 +1719,7 @@ process_material = SubResource("ParticleProcessMaterial_mjuny")
 [node name="LazerWeights" type="Node" parent="."]
 
 [node name="Laser" type="Area2D" parent="LazerWeights"]
-position = Vector2(2913, 131)
+position = Vector2(3161, 262)
 rotation = 1.5708
 scale = Vector2(2, 1)
 
@@ -1992,7 +1738,7 @@ position = Vector2(15, 0)
 shape = SubResource("RectangleShape2D_ehtq4")
 
 [node name="LazerTriggerWeight" type="Area2D" parent="LazerWeights"]
-position = Vector2(3047, 145)
+position = Vector2(2735, 311)
 scale = Vector2(1, 2)
 script = ExtResource("11_dgx0r")
 
@@ -2066,7 +1812,7 @@ theme_override_font_sizes/font_size = 8
 text = "Press E to interact"
 
 [node name="Door1" type="StaticBody2D" parent="DoorNodes"]
-position = Vector2(592, 283)
+position = Vector2(591, 283)
 rotation = 1.5708
 scale = Vector2(1.3, 1.3)
 
@@ -2076,19 +1822,6 @@ shape = SubResource("RectangleShape2D_r032g")
 
 [node name="Sprite2D" type="Sprite2D" parent="DoorNodes/Door1"]
 position = Vector2(3.57141, 3.06681e-05)
-texture = ExtResource("2_1g3ej")
-region_enabled = true
-region_rect = Rect2(0, 48, 48, 16)
-
-[node name="Door2" type="StaticBody2D" parent="DoorNodes"]
-position = Vector2(2120, 296)
-rotation = 1.5708
-scale = Vector2(1, 0.741)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorNodes/Door2"]
-shape = SubResource("RectangleShape2D_r032g")
-
-[node name="Sprite2D" type="Sprite2D" parent="DoorNodes/Door2"]
 texture = ExtResource("2_1g3ej")
 region_enabled = true
 region_rect = Rect2(0, 48, 48, 16)
