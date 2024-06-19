@@ -168,8 +168,8 @@ var door10_interaction = false
 func _input(event):
 	if Input.is_action_just_pressed("interact") and door1_interaction == true:
 		$DoorNodes/DoorAnimation.play("door1")
-	elif Input.is_action_just_pressed("interact") and door2_interaction == true:
-		$DoorNodes/DoorAnimation.play("door2")
+	#elif Input.is_action_just_pressed("interact") and door2_interaction == true:
+		#$DoorNodes/DoorAnimation.play("door2")
 
 
 

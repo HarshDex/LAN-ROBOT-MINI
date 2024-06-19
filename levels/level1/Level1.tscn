@@ -1964,7 +1964,7 @@ autoplay = "idle"
 frame_progress = 0.582574
 
 [node name="Door" type="StaticBody2D" parent="DoorNodes"]
-position = Vector2(592, 283)
+position = Vector2(591, 283)
 rotation = 1.5708
 scale = Vector2(1.3, 1.3)
 
@@ -2050,7 +2050,7 @@ position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_68vg0")
 
 [node name="Platform2" type="AnimatableBody2D" parent="Platforms"]
-position = Vector2(3472.39, 198)
+position = Vector2(3405, 197)
 
 [node name="Sprite2D" type="Sprite2D" parent="Platforms/Platform2"]
 texture = ExtResource("3_jjttf")
@@ -2073,11 +2073,9 @@ libraries = {
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("8_a1loh")]
 position = Vector2(1872, 57)
-up_direction = Vector2(0.707107, 0.707107)
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource("8_a1loh")]
 position = Vector2(2789, 296)
-up_direction = Vector2(0.707107, 0.707107)
 
 [node name="Enemy3" type="CharacterBody2D" parent="Enemies"]
 position = Vector2(954, 205)
