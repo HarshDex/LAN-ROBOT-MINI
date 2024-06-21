@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var spawn_points: Array[Vector2] = [Vector2(100, 200), Vector2(75, 110)]
+@export var spawn_points: Array[Vector2] = [Vector2(86, 302), Vector2(100, 310)]
 @export var player_scene: PackedScene
 
 @onready var animation_player = $Platforms/PlatformAnimation
@@ -187,6 +187,10 @@ func _input(event):
 	if Input.is_action_just_pressed("interact") and door3_interaction == true:
 		$DoorNodes/DoorAnimation.play("door3")
 		$DoorNodes/Door3Trigger.visible = false
+
+	if Input.is_action_just_pressed("interact") and door4_interaction == true:
+		$DoorNodes/DoorAnimation.play("door4")
+		$DoorNodes/Door4Trigger.visible = false
 		
 	#<---door related---->
 	
@@ -241,12 +245,12 @@ func _on_door_3_trigger_body_exited(_body):
 func _on_door_4_trigger_body_entered(body):
 	if body.is_in_group("player"):
 		$DoorNodes/Door4Trigger/Label.visible = true
-		door2_interaction = true
+		door4_interaction = true
 
 
 func _on_door_4_trigger_body_exited(_body):
 	$DoorNodes/Door4Trigger/Label.visible = false
-	door2_interaction = false
+	door4_interaction = false
 
 
 
