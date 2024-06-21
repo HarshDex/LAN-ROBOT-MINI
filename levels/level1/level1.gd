@@ -196,7 +196,6 @@ func _on_door_trigger_5_body_entered(body):
 func _on_teleportation_body_entered(body):
 	if body is RigidBody2D:
 		print("Rigid Body Entered Teleportation!")
-		
 		# Teleport the body using set_deferred
 		body.set_deferred("global_position", $Teleportation/teleportation2.global_position + Vector2(50, 0))
 		body.set_deferred("linear_velocity", Vector2.ZERO)

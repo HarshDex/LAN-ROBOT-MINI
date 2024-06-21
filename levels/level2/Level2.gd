@@ -175,12 +175,23 @@ var laser7_interaction = false
 
 func _input(event):
 	#<---door related---->
+	
 	if Input.is_action_just_pressed("interact") and door1_interaction == true:
 		$DoorNodes/DoorAnimation.play("door1")
 		$DoorNodes/Door1Trigger.visible = false
+	
+	if Input.is_action_just_pressed("interact") and door2_interaction == true:
+		$DoorNodes/DoorAnimation.play("door2")
+		$DoorNodes/Door2Trigger.visible = false
+	
+	if Input.is_action_just_pressed("interact") and door3_interaction == true:
+		$DoorNodes/DoorAnimation.play("door3")
+		$DoorNodes/Door3Trigger.visible = false
+		
 	#<---door related---->
 	
 	#<----laser related---->
+	
 	if Input.is_action_just_pressed("interact") and laser1_interaction == true:
 		$LaserTriggers/Laser.set_scale(Vector2.ZERO)
 		$LaserTriggers/Laser1Trigger.visible = false
@@ -188,6 +199,7 @@ func _input(event):
 	if Input.is_action_just_pressed("interact") and laser2_interaction == true:
 		$LaserTriggers/Laser2.set_scale(Vector2.ZERO)
 		$LaserTriggers/Laser2Trigger.visible = false
+		
 	#<----laser related---->
 	
 	
@@ -218,12 +230,12 @@ func _on_door_2_trigger_body_exited(_body):
 func _on_door_3_trigger_body_entered(body):
 	if body.is_in_group("player"):
 		$DoorNodes/Door3Trigger/Label.visible = true
-		door2_interaction = true
+		door3_interaction = true
 
 
 func _on_door_3_trigger_body_exited(_body):
 	$DoorNodes/Door3Trigger/Label.visible = false
-	door2_interaction = false
+	door3_interaction = false
 
 
 func _on_door_4_trigger_body_entered(body):
@@ -308,6 +320,58 @@ func _on_laser_2_trigger_body_exited(_body):
 	laser2_interaction = false
 #<--- Laser Trigger related code ---->
 
+
+#<--- teleportation related code--->
+func _on_teleportation_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		# Teleport the body using set_deferred
+		body.set_deferred("global_position", $Teleportation/teleportation2.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation/TeleportSound.play()
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation2.global_position + Vector2(40, 0)
+		$Teleportation/teleportation/TeleportSound.play()
+
+
+func _on_teleportation_2_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		# Teleport the body using set_deferred
+		body.set_deferred("global_position", $Teleportation/teleportation.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation2/TeleportSound.play()
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation.global_position + Vector2(40, 0)
+		$Teleportation/teleportation2/TeleportSound.play()
+
+func _on_teleportation_3_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		# Teleport the body using set_deferred
+		body.set_deferred("global_position", $Teleportation/teleportation4.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation3/TeleportSound.play()
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation4.global_position + Vector2(40, 0)
+		$Teleportation/teleportation3/TeleportSound.play()
+	
+
+func _on_teleportation_4_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		# Teleport the body using set_deferred
+		body.set_deferred("global_position", $Teleportation/teleportation3.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation4/TeleportSound.play
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation3.global_position + Vector2(40, 0)
+		$Teleportation/teleportation4/TeleportSound.play()
+#<--- teleportation related code--->
 
 
 
