@@ -17,7 +17,7 @@ func _ready():
 	# Check if the current peer ais the server (host) and has multiplayer authority
 	if is_multiplayer_authority():
 		# Start playing the animation automatically on the host
-		#animation_player.play("platforms")
+		animation_player.play("platform1")
 		$RotatingLasers/RotatingLaser/AnimationPlayer.play("rotation")
 		
 func _on_player_connected(peer_id):
@@ -150,8 +150,6 @@ func respawn_player(checkpoint_position, spawn_point, offset):
 
 
 #<--- Door Related Code ---->
-
-
 var door1_interaction = false
 var door2_interaction = false
 var door3_interaction = false
@@ -164,6 +162,7 @@ var door9_interaction = false
 var door10_interaction = false
 
 
+#<---for laser---->
 var laser1_interaction = false
 var laser2_interaction = false
 var laser3_interaction = false
@@ -175,19 +174,20 @@ var laser7_interaction = false
 
 
 func _input(event):
-	
 	#<---door related---->
 	if Input.is_action_just_pressed("interact") and door1_interaction == true:
 		$DoorNodes/DoorAnimation.play("door1")
+		$DoorNodes/Door1Trigger.visible = false
 	#<---door related---->
-
+	
 	#<----laser related---->
 	if Input.is_action_just_pressed("interact") and laser1_interaction == true:
 		$LaserTriggers/Laser.set_scale(Vector2.ZERO)
+		$LaserTriggers/Laser1Trigger.visible = false
 		
 	if Input.is_action_just_pressed("interact") and laser2_interaction == true:
-		print("reached controll here")
 		$LaserTriggers/Laser2.set_scale(Vector2.ZERO)
+		$LaserTriggers/Laser2Trigger.visible = false
 	#<----laser related---->
 	
 	
