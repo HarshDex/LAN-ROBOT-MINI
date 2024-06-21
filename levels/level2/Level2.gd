@@ -17,7 +17,7 @@ func _ready():
 	# Check if the current peer ais the server (host) and has multiplayer authority
 	if is_multiplayer_authority():
 		# Start playing the animation automatically on the host
-		animation_player.play("platforms")
+		#animation_player.play("platforms")
 		$RotatingLasers/RotatingLaser/AnimationPlayer.play("rotation")
 		
 func _on_player_connected(peer_id):
@@ -164,21 +164,41 @@ var door9_interaction = false
 var door10_interaction = false
 
 
+var laser1_interaction = false
+var laser2_interaction = false
+var laser3_interaction = false
+var laser4_interaction = false
+var laser5_interaction = false
+var laser6_interaction = false
+var laser7_interaction = false
+
+
 
 func _input(event):
+	
+	#<---door related---->
 	if Input.is_action_just_pressed("interact") and door1_interaction == true:
 		$DoorNodes/DoorAnimation.play("door1")
-	#elif Input.is_action_just_pressed("interact") and door2_interaction == true:
-		#$DoorNodes/DoorAnimation.play("door2")
+	#<---door related---->
 
-
-
+	#<----laser related---->
+	if Input.is_action_just_pressed("interact") and laser1_interaction == true:
+		$LaserTriggers/Laser.set_scale(Vector2.ZERO)
+		
+	if Input.is_action_just_pressed("interact") and laser2_interaction == true:
+		print("reached controll here")
+		$LaserTriggers/Laser2.set_scale(Vector2.ZERO)
+	#<----laser related---->
+	
+	
+	
+	
 func _on_door_1_trigger_body_entered(body):
 	if body.is_in_group("player"):
 		$DoorNodes/Door1Trigger/Label.visible = true
 		door1_interaction = true
 
-func _on_door_1_trigger_body_exited(body):
+func _on_door_1_trigger_body_exited(_body):
 	$DoorNodes/Door1Trigger/Label.visible = false
 	door1_interaction = false
 
@@ -189,7 +209,7 @@ func _on_door_2_trigger_body_entered(body):
 		door2_interaction = true
 
 
-func _on_door_2_trigger_body_exited(body):
+func _on_door_2_trigger_body_exited(_body):
 	$DoorNodes/Door2Trigger/Label.visible = false
 	door2_interaction = false
 
@@ -201,7 +221,7 @@ func _on_door_3_trigger_body_entered(body):
 		door2_interaction = true
 
 
-func _on_door_3_trigger_body_exited(body):
+func _on_door_3_trigger_body_exited(_body):
 	$DoorNodes/Door3Trigger/Label.visible = false
 	door2_interaction = false
 
@@ -212,7 +232,7 @@ func _on_door_4_trigger_body_entered(body):
 		door2_interaction = true
 
 
-func _on_door_4_trigger_body_exited(body):
+func _on_door_4_trigger_body_exited(_body):
 	$DoorNodes/Door4Trigger/Label.visible = false
 	door2_interaction = false
 
@@ -224,76 +244,15 @@ func _on_door_5_trigger_body_entered(body):
 		door2_interaction = true
 
 
-func _on_door_5_trigger_body_exited(body):
+func _on_door_5_trigger_body_exited(_body):
 	$DoorNodes/Door5Trigger/Label.visible = false
 	door2_interaction = false
 
-
-
-
-
-
 #<--- Door Related Code ---->
 
-#<--- Teleportation Related Code ---->
-
-func _on_teleportation_body_entered(body):
-	if body is RigidBody2D:
-		print("Rigid Body Entered Teleportation!")
-		
-		# Teleport the body using set_deferred
-		body.set_deferred("global_position", $Teleportation/teleportation2.global_position + Vector2(50, 0))
-		body.set_deferred("linear_velocity", Vector2.ZERO)
-		$Teleportation/teleportation/TeleportSound.play()
-		
-	elif body is CharacterBody2D:
-		print("Character Body Entered Teleportation!")
-		body.global_position = $Teleportation/teleportation2.global_position + Vector2(40, 0)
-		$Teleportation/teleportation/TeleportSound.play()
-
-func _on_teleportation_2_body_entered(body):
-	if body is RigidBody2D:
-		print("Rigid Body Entered Teleportation!")
-		
-		# Teleport the body using set_deferred
-		body.set_deferred("global_position", $Teleportation/teleportation.global_position + Vector2(50, 0))
-		body.set_deferred("linear_velocity", Vector2.ZERO)
-		$Teleportation/teleportation/TeleportSound.play()
-	elif body is CharacterBody2D:
-		print("Character Body Entered Teleportation!")
-		body.global_position = $Teleportation/teleportation.global_position + Vector2(40, 0)
-		$Teleportation/teleportation/TeleportSound.play()
-
-
-func _on_teleportation_3_body_entered(body):
-	if body is RigidBody2D:
-		print("Rigid Body Entered Teleportation!")
-		# Teleport the body using set_deferred
-		body.set_deferred("global_position", $Teleportation/teleportation4.global_position + Vector2(50, 0))
-		body.set_deferred("linear_velocity", Vector2.ZERO)
-		$Teleportation/teleportation4/TeleportSound.play()
-	elif body is CharacterBody2D:
-		print("Character Body Entered Teleportation!")
-		body.global_position = $Teleportation/teleportation4.global_position + Vector2(40, 0)
-		$Teleportation/teleportation4/TeleportSound.play()
-		
-func _on_teleportation_4_body_entered(body):
-	if body is RigidBody2D:
-		print("Rigid Body Entered Teleportation!")
-		
-		# Teleport the body using set_deferred
-		body.set_deferred("global_position", $Teleportation/teleportation3.global_position + Vector2(50, 0))
-		body.set_deferred("linear_velocity", Vector2.ZERO)
-		$Teleportation/teleportation3/TeleportSound.play()
-	elif body is CharacterBody2D:
-		print("Character Body Entered Teleportation!")
-		body.global_position = $Teleportation/teleportation3.global_position + Vector2(40, 0)
-		$Teleportation/teleportation3/TeleportSound.play()
-#<--- Teleportation Related Code ---->
 
 
 #<--- DoorWeight Related Code ---->		
-
 
 func _on_door_trigger_weight_body_entered(body):
 	if body.is_in_group("player") or body.is_in_group("boxes"):
@@ -321,17 +280,7 @@ func _on_door_trigger_weight_3_body_exited(body):
 
 
 
-#<--- DoorWeight Lazer Related Code ---->
-
-func _on_lazer_trigger_weight_body_entered(body):
-	if body.is_in_group("player") or body.is_in_group("boxes"):
-		$LazerWeights/Laser.set_scale(Vector2.ZERO)
-
-
-func _on_lazer_trigger_weight_body_exited(body):
-	if body.is_in_group("player") or body.is_in_group("boxes"):
-		$LazerWeights/Laser.set_scale(Vector2(2, 1))
-		
+#<--- Laser Trigger related code ---->
 
 func _on_death_laser_body_entered(body):
 	print("Player dead af")
@@ -339,8 +288,28 @@ func _on_death_laser_body_entered(body):
 		print("death")
 		var player_id = int(str(body.name).replace("player_", ""))
 		body.rpc("player_died", player_id)
-		
-#<--- DoorWeight Lazer Related Code ---->
+
+
+func _on_laser_1_trigger_body_entered(_body):
+	$LaserTriggers/Laser1Trigger/Label.visible = true
+	laser1_interaction = true
+	
+func _on_laser_1_trigger_body_exited(_body):
+	$LaserTriggers/Laser1Trigger/Label.visible = false
+	laser1_interaction = false
+	
+func _on_laser_2_trigger_body_entered(body):
+	$LaserTriggers/Laser2Trigger/Label.visible = true
+	laser2_interaction = true
+	
+	
+func _on_laser_2_trigger_body_exited(_body):
+	$LaserTriggers/Laser2Trigger/Label.visible = false
+	laser2_interaction = false
+#<--- Laser Trigger related code ---->
+
+
+
 
 
 

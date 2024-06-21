@@ -122,11 +122,11 @@ limit_bottom = 0
 position_smoothing_enabled = true
 
 [node name="RayCastDownLeft" type="RayCast2D" parent="."]
-position = Vector2(-7, 10)
+position = Vector2(-7, 16)
 target_position = Vector2(2.08165e-12, 5)
 
 [node name="RayCastDownRight" type="RayCast2D" parent="."]
-position = Vector2(6, 10)
+position = Vector2(6, 16)
 target_position = Vector2(2.08165e-12, 5)
 
 [node name="RayCastLeft" type="RayCast2D" parent="."]

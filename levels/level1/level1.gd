@@ -283,7 +283,6 @@ func _on_lazer_trigger_weight_body_entered(body):
 	if body.is_in_group("player") or body.is_in_group("boxes"):
 		$LazerWeights/Laser.set_scale(Vector2.ZERO)
 
-
 func _on_lazer_trigger_weight_body_exited(body):
 	if body.is_in_group("player") or body.is_in_group("boxes"):
 		$LazerWeights/Laser.set_scale(Vector2(2, 1))
