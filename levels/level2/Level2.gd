@@ -192,6 +192,10 @@ func _input(event):
 		$DoorNodes/DoorAnimation.play("door4")
 		$DoorNodes/Door4Trigger.visible = false
 		
+	if Input.is_action_just_pressed("interact") and door5_interaction == true:
+		$DoorNodes/DoorAnimation.play("door5")
+		$DoorNodes/Door5Trigger.visible = false
+		
 	#<---door related---->
 	
 	#<----laser related---->
@@ -257,12 +261,12 @@ func _on_door_4_trigger_body_exited(_body):
 func _on_door_5_trigger_body_entered(body):
 	if body.is_in_group("player"):
 		$DoorNodes/Door5Trigger/Label.visible = true
-		door2_interaction = true
+		door5_interaction = true
 
 
 func _on_door_5_trigger_body_exited(_body):
 	$DoorNodes/Door5Trigger/Label.visible = false
-	door2_interaction = false
+	door5_interaction = false
 
 #<--- Door Related Code ---->
 
