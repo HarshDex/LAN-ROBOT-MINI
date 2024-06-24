@@ -379,10 +379,55 @@ func _on_teleportation_4_body_entered(body):
 		print("Character Body Entered Teleportation!")
 		body.global_position = $Teleportation/teleportation3.global_position + Vector2(40, 0)
 		$Teleportation/teleportation4/TeleportSound.play()
+ 
+
+func _on_teleportation_5_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		# Teleport the body using set_deferred
+		body.set_deferred("global_position", $Teleportation/teleportation6.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation5/TeleportSound.play
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation6.global_position + Vector2(40, 0)
+		$Teleportation/teleportation5/TeleportSound.play()
+		
+
+func _on_teleportation_6_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		# Teleport the body using set_deferred
+		body.set_deferred("global_position", $Teleportation/teleportation5.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation6/TeleportSound.play
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation5.global_position + Vector2(40, 0)
+		$Teleportation/teleportation6/TeleportSound.play()
+
+func _on_teleportation_7_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		body.set_deferred("global_position", $Teleportation/teleportation8.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation7/TeleportSound.play
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation8.global_position + Vector2(40, 0)
+		$Teleportation/teleportation7/TeleportSound.play()
+		
+func _on_teleportation_8_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		body.set_deferred("global_position", $Teleportation/teleportation7.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation8/TeleportSound.play
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation7.global_position + Vector2(40, 0)
+		$Teleportation/teleportation8/TeleportSound.play()
 #<--- teleportation related code--->
-
-
-
 
 
 
