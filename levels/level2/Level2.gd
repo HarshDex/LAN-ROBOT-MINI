@@ -196,6 +196,14 @@ func _input(event):
 		$DoorNodes/DoorAnimation.play("door5")
 		$DoorNodes/Door5Trigger.visible = false
 		
+	if Input.is_action_just_pressed("interact") and door6_interaction == true:
+		$DoorNodes/DoorAnimation.play("door6")
+		$DoorNodes/Door6Trigger.visible = false
+		
+	if Input.is_action_just_pressed("interact") and door7_interaction == true:
+		$DoorNodes/DoorAnimation.play("door7")
+		$DoorNodes/Door7Trigger.visible = false
+		
 	#<---door related---->
 	
 	#<----laser related---->
@@ -267,6 +275,26 @@ func _on_door_5_trigger_body_entered(body):
 func _on_door_5_trigger_body_exited(_body):
 	$DoorNodes/Door5Trigger/Label.visible = false
 	door5_interaction = false
+	
+func _on_door_6_trigger_body_entered(body):
+	if body.is_in_group("player"):
+		$DoorNodes/Door6Trigger/Label.visible = true
+		door6_interaction = true
+	
+func _on_door_6_trigger_body_exited(body):
+	$DoorNodes/Door6Trigger/Label.visible = false
+	door6_interaction = false
+	
+
+func _on_door_7_trigger_body_entered(body):
+	if body.is_in_group("player"):
+		$DoorNodes/Door7Trigger/Label.visible = true
+		door7_interaction = true
+ 
+
+func _on_door_7_trigger_body_exited(body):
+	$DoorNodes/Door7Trigger/Label.visible = false
+	door7_interaction = false
 
 #<--- Door Related Code ---->
 
@@ -294,8 +322,7 @@ func _on_door_trigger_weight_3_body_exited(body):
 	if body.is_in_group("player") or body.is_in_group("boxes"):
 		$DoorWeight/DoorWeightAnimation.play("doorWeight2_exit")
 	
-	
-	
+
 #<--- DoorWeight Related Code ---->
 
 
@@ -430,4 +457,10 @@ func _on_teleportation_8_body_entered(body):
 #<--- teleportation related code--->
 
 
-
+#<--Trap related code--->
+var trapFlag = 0;
+func _on_trap_area_body_entered(body):
+	if trapFlag == 0: 
+		$DoorNodes/DoorAnimation.play("trapDoorClose")
+		trapFlag = 1
+#<--Trap related code--->
