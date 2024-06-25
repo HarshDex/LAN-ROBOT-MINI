@@ -18,6 +18,7 @@ func _ready():
 	if is_multiplayer_authority():
 		# Start playing the animation automatically on the host
 		animation_player.play("platform1")
+		animation_player.play("platform2")
 		$RotatingLasers/RotatingLaser/AnimationPlayer.play("rotation")
 		
 func _on_player_connected(peer_id):
@@ -204,6 +205,10 @@ func _input(event):
 		$DoorNodes/DoorAnimation.play("door7")
 		$DoorNodes/Door7Trigger.visible = false
 		
+	if Input.is_action_just_pressed("interact") and door8_interaction == true:
+		$DoorNodes/DoorAnimation.play("door8")
+		$DoorNodes/Door8Trigger.visible = false
+		
 	#<---door related---->
 	
 	#<----laser related---->
@@ -295,6 +300,16 @@ func _on_door_7_trigger_body_entered(body):
 func _on_door_7_trigger_body_exited(body):
 	$DoorNodes/Door7Trigger/Label.visible = false
 	door7_interaction = false
+	
+func _on_door_8_trigger_body_entered(body):
+	if body.is_in_group("player"):
+		$DoorNodes/Door8Trigger/Label.visible = true
+		door8_interaction = true
+		
+func _on_door_8_trigger_body_exited(body):
+	$DoorNodes/Door8Trigger/Label.visible = false
+	door8_interaction = false
+
 
 #<--- Door Related Code ---->
 
@@ -464,3 +479,8 @@ func _on_trap_area_body_entered(body):
 		$DoorNodes/DoorAnimation.play("trapDoorClose")
 		trapFlag = 1
 #<--Trap related code--->
+
+
+
+
+
