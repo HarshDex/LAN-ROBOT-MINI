@@ -209,6 +209,10 @@ func _input(event):
 		$DoorNodes/DoorAnimation.play("door8")
 		$DoorNodes/Door8Trigger.visible = false
 		
+	if Input.is_action_just_pressed("interact") and door9_interaction == true:
+		$DoorNodes/DoorAnimation.play("door9")
+		$DoorNodes/Door9Trigger.visible = false
+		
 	#<---door related---->
 	
 	#<----laser related---->
@@ -309,6 +313,17 @@ func _on_door_8_trigger_body_entered(body):
 func _on_door_8_trigger_body_exited(body):
 	$DoorNodes/Door8Trigger/Label.visible = false
 	door8_interaction = false
+	
+	
+func _on_door_9_trigger_body_entered(body):
+	if body.is_in_group("player"):
+		$DoorNodes/Door9Trigger/Label.visible = true
+		door9_interaction = true
+
+func _on_door_9_trigger_body_exited(body):
+	$DoorNodes/Door9Trigger/Label.visible = false
+	door9_interaction = false
+
 
 
 #<--- Door Related Code ---->
@@ -469,6 +484,29 @@ func _on_teleportation_8_body_entered(body):
 		print("Character Body Entered Teleportation!")
 		body.global_position = $Teleportation/teleportation7.global_position + Vector2(40, 0)
 		$Teleportation/teleportation8/TeleportSound.play()
+		
+func _on_teleportation_9_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		body.set_deferred("global_position", $Teleportation/teleportation10.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation10/TeleportSound.play
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation10.global_position + Vector2(40, 0)
+		$Teleportation/teleportation9/TeleportSound.play()
+		
+		
+func _on_teleportation_10_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		body.set_deferred("global_position", $Teleportation/teleportation9.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation9/TeleportSound.play
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation9.global_position + Vector2(40, 0)
+		$Teleportation/teleportation9/TeleportSound.play()
 #<--- teleportation related code--->
 
 
@@ -479,6 +517,16 @@ func _on_trap_area_body_entered(body):
 		$DoorNodes/DoorAnimation.play("trapDoorClose")
 		trapFlag = 1
 #<--Trap related code--->
+
+
+
+
+
+
+
+
+
+
 
 
 
