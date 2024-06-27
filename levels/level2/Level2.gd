@@ -18,7 +18,6 @@ func _ready():
 	if is_multiplayer_authority():
 		# Start playing the animation automatically on the host
 		animation_player.play("platform1")
-		animation_player.play("platform2")
 		$RotatingLasers/RotatingLaser/AnimationPlayer.play("rotation")
 		
 func _on_player_connected(peer_id):
