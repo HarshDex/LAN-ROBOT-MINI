@@ -160,6 +160,10 @@ var door7_interaction = false
 var door8_interaction = false
 var door9_interaction = false
 var door10_interaction = false
+var door11_interaction = false
+var door12_interaction = false
+var door13_interaction = false
+var door14_interaction = false
 
 
 #<---for laser---->
@@ -211,6 +215,18 @@ func _input(event):
 	if Input.is_action_just_pressed("interact") and door9_interaction == true:
 		$DoorNodes/DoorAnimation.play("door9")
 		$DoorNodes/Door9Trigger.visible = false
+		
+	if Input.is_action_just_pressed("interact") and door10_interaction == true:
+		$DoorNodes/DoorAnimation.play("door10")
+		$DoorNodes/Door10Trigger.visible = false
+	
+	if Input.is_action_just_pressed("interact") and door11_interaction == true:
+		$DoorNodes/DoorAnimation.play("door11")
+		$DoorNodes/Door11Trigger.visible = false
+	
+	if Input.is_action_just_pressed("interact") and door12_interaction == true:
+		$DoorNodes/DoorAnimation.play("door12")
+		$DoorNodes/Door12Trigger.visible = false
 		
 	#<---door related---->
 	
@@ -324,7 +340,36 @@ func _on_door_9_trigger_body_exited(body):
 	door9_interaction = false
 
 
+func _on_door_10_trigger_body_entered(body):
+	if body.is_in_group("player"):
+		$DoorNodes/Door10Trigger/Label.visible = true
+		door10_interaction = true
+		
 
+func _on_door_10_trigger_body_exited(body):
+	$DoorNodes/Door10Trigger/Label.visible = false
+	door10_interaction = false
+	
+
+func _on_door_11_trigger_body_entered(body):
+	if body.is_in_group("player"):
+		$DoorNodes/Door11Trigger/Label.visible = true
+		door11_interaction = true
+		
+func _on_door_11_trigger_body_exited(body):
+	$DoorNodes/Door11Trigger/Label.visible = false
+	door11_interaction = false
+	
+	
+func _on_door_12_trigger_body_entered(body):
+	if body.is_in_group("player"):
+		$DoorNodes/Door12Trigger/Label.visible = true
+		door12_interaction = true
+		
+func _on_door_12_trigger_body_exited(body):
+	$DoorNodes/Door12Trigger/Label.visible = false
+	door12_interaction = false
+	
 #<--- Door Related Code ---->
 
 
@@ -506,6 +551,33 @@ func _on_teleportation_10_body_entered(body):
 		print("Character Body Entered Teleportation!")
 		body.global_position = $Teleportation/teleportation9.global_position + Vector2(40, 0)
 		$Teleportation/teleportation9/TeleportSound.play()
+		
+
+
+func _on_teleportation_11_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		body.set_deferred("global_position", $Teleportation/teleportation12.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation12/TeleportSound.play
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation12.global_position + Vector2(40, 0)
+		$Teleportation/teleportation12/TeleportSound.play()
+		
+
+func _on_teleportation_12_body_entered(body):
+	if body is RigidBody2D:
+		print("Rigid Body Entered Teleportation!")
+		body.set_deferred("global_position", $Teleportation/teleportation11.global_position + Vector2(50, 0))
+		body.set_deferred("linear_velocity", Vector2.ZERO)
+		$Teleportation/teleportation11/TeleportSound.play
+	elif body is CharacterBody2D:
+		print("Character Body Entered Teleportation!")
+		body.global_position = $Teleportation/teleportation11.global_position + Vector2(40, 0)
+		$Teleportation/teleportation11/TeleportSound.play()
+		
+		
 #<--- teleportation related code--->
 
 
@@ -516,18 +588,3 @@ func _on_trap_area_body_entered(body):
 		$DoorNodes/DoorAnimation.play("trapDoorClose")
 		trapFlag = 1
 #<--Trap related code--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
