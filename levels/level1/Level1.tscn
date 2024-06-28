@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://b0n4bmgwdm0yy"]
+[gd_scene load_steps=104 format=3 uid="uid://b0n4bmgwdm0yy"]
 
 [ext_resource type="Script" path="res://levels/level1/level1.gd" id="1_3xra3"]
 [ext_resource type="PackedScene" uid="uid://8tsdxyyikwsd" path="res://player/player.tscn" id="2_1qde5"]
@@ -171,6 +171,11 @@ _data = {
 "door4": SubResource("Animation_x1cdm"),
 "door5": SubResource("Animation_5kmfe")
 }
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_68fc5"]
+properties/0/path = NodePath(".:process_thread_group")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68vg0"]
 size = Vector2(48, 4)
@@ -2037,6 +2042,9 @@ root_node = NodePath("../Door")
 libraries = {
 "": SubResource("AnimationLibrary_rghmw")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="DoorNodes"]
+replication_config = SubResource("SceneReplicationConfig_68fc5")
 
 [node name="Platforms" type="Node" parent="."]
 

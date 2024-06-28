@@ -109,7 +109,7 @@ height = 25.0
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ukisy"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/replication_mode = 2
+properties/0/replication_mode = 1
 properties/1/path = NodePath("AnimatedSprite2D:frame")
 properties/1/spawn = true
 properties/1/replication_mode = 1
@@ -119,6 +119,9 @@ properties/2/replication_mode = 1
 properties/3/path = NodePath("AnimatedSprite2D:flip_v")
 properties/3/spawn = true
 properties/3/replication_mode = 1
+properties/4/path = NodePath("AnimatedSprite2D:animation")
+properties/4/spawn = true
+properties/4/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
@@ -134,6 +137,7 @@ shape = SubResource("CapsuleShape2D_t6o3d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -115)
+zoom = Vector2(0.95, 0.95)
 limit_left = 0
 limit_top = 0
 limit_smoothed = true

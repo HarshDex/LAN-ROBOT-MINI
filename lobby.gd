@@ -8,7 +8,7 @@ var max_players = 2
 @onready var error_dialog = $ErrorWindow
 
 var ip_address
-var level_instance
+var level_instance = "res://levels/level2/Level2.tscn"
 
 func _ready():
 	var get_ip_address = IP.get_local_addresses()
@@ -34,7 +34,7 @@ func _on_host_pressed():
 	peer.create_server(port, max_players)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_player_connected)
-	level_instance = get_tree().change_scene_to_file("res://levels/level1/Level1.tscn")
+	get_tree().change_scene_to_file(level_instance)
 
 func _on_join_pressed():
 	var address_text = address_line_edit.text.strip_edges()
@@ -54,7 +54,7 @@ func _on_join_pressed():
 
 	peer.create_client(address_text, port)
 	multiplayer.multiplayer_peer = peer
-	level_instance = get_tree().change_scene_to_file("res://levels/level1/Level1.tscn")
+	get_tree().change_scene_to_file(level_instance)
 
 func _on_player_connected(peer_id):
 	print("Player connected: ", peer_id)

@@ -415,20 +415,39 @@ func _on_laser_1_trigger_body_entered(_body):
 	$LaserTriggers/Laser1Trigger/Label.visible = true
 	laser1_interaction = true
 	
-func _on_laser_1_trigger_body_exited(_body):
-	$LaserTriggers/Laser1Trigger/Label.visible = false
-	laser1_interaction = false
-	
+
 func _on_laser_2_trigger_body_entered(body):
 	$LaserTriggers/Laser2Trigger/Label.visible = true
 	laser2_interaction = true
 	
 	
-func _on_laser_2_trigger_body_exited(_body):
-	$LaserTriggers/Laser2Trigger/Label.visible = false
-	laser2_interaction = false
+
+
 #<--- Laser Trigger related code ---->
 
+
+
+#<--- Laser Weight Trigger related code ---->
+
+func _on_laser_1_trigger_weight_body_entered(body):
+	if body.is_in_group("player") or body.is_in_group("boxes"):
+		laser1_interaction = false
+		$Lasers/Laser.visible = false
+		
+		
+
+
+func _on_laser_2_trigger_weight_body_entered(body):
+	if body.is_in_group("player") or body.is_in_group("boxes"):
+		laser2_interaction = false
+		$LaserTriggers/Laser2.visible = false
+
+
+func _on_laser_2_trigger_weight_body_exited(body):
+	$LaserTriggers/Laser2.visible = true
+
+
+#<--- Laser Weight Trigger related code ---->
 
 #<--- teleportation related code--->
 func _on_teleportation_body_entered(body):
@@ -588,3 +607,5 @@ func _on_trap_area_body_entered(body):
 		$DoorNodes/DoorAnimation.play("trapDoorClose")
 		trapFlag = 1
 #<--Trap related code--->
+
+

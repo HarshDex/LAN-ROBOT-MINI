@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7numps58miqx"]
+[gd_scene load_steps=11 format=3 uid="uid://c7numps58miqx"]
 
 [ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="1_2jpuf"]
+[ext_resource type="Script" path="res://mechanics/RotatingLaser.gd" id="1_txnp7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_skkrd"]
 atlas = ExtResource("1_2jpuf")
@@ -65,6 +66,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [node name="RotatingLaser" type="Node2D"]
+script = ExtResource("1_txnp7")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dme70")
@@ -89,7 +91,6 @@ shape = SubResource("RectangleShape2D_a76s3")
 libraries = {
 "": SubResource("AnimationLibrary_hiqax")
 }
-autoplay = "rotation"
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_o80xb")
