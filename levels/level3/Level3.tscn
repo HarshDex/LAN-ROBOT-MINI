@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://b3dyw6ug0tu0l"]
+[gd_scene load_steps=120 format=3 uid="uid://b3dyw6ug0tu0l"]
 
 [ext_resource type="Script" path="res://levels/level3/Level3.gd" id="1_owcsq"]
 [ext_resource type="PackedScene" uid="uid://8tsdxyyikwsd" path="res://player/player.tscn" id="2_msd5a"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b2mxagl7degeg" path="res://mechanics/platform.tscn" id="3_xws8a"]
 [ext_resource type="Script" path="res://mechanics/enemy.gd" id="4_d7m3c"]
 [ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="5_064ee"]
-[ext_resource type="PackedScene" uid="uid://1blbgueygvxs" path="res://mechanics/enemyFast.tscn" id="6_pc3nb"]
 [ext_resource type="Script" path="res://mechanics/doorTriggerWeight.gd" id="7_36ffh"]
 [ext_resource type="Shader" path="res://addons/LaserBeam Node/LaserBeam.gdshader" id="8_clgi4"]
 [ext_resource type="Texture2D" uid="uid://3s6bdjalw2jc" path="res://assets/particles/rotated/spark_06_rotated.png" id="9_iwmkm"]
@@ -235,6 +234,101 @@ properties/5/spawn = true
 properties/5/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5r6xx"]
+size = Vector2(30, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjwpp"]
+atlas = ExtResource("5_064ee")
+region = Rect2(208, 116, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6p6m"]
+atlas = ExtResource("5_064ee")
+region = Rect2(224, 116, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojdwl"]
+atlas = ExtResource("5_064ee")
+region = Rect2(240, 116, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imumf"]
+atlas = ExtResource("5_064ee")
+region = Rect2(256, 116, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drcpy"]
+atlas = ExtResource("5_064ee")
+region = Rect2(288, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfste"]
+atlas = ExtResource("5_064ee")
+region = Rect2(304, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rj04"]
+atlas = ExtResource("5_064ee")
+region = Rect2(320, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj8w8"]
+atlas = ExtResource("5_064ee")
+region = Rect2(336, 112, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1sfn8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjwpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6p6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojdwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imumf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drcpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfste")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rj04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj8w8")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_saph5"]
+size = Vector2(15, 25)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_juy8a"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite:frame")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:process_thread_group")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("AnimatedSprite:flip_h")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("AnimatedSprite:flip_v")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxy14"]
 size = Vector2(30, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_66k8y"]
@@ -2503,10 +2597,50 @@ shape = SubResource("RectangleShape2D_5r6xx")
 
 [node name="EnemiesFast" type="Node" parent="."]
 
-[node name="EnemyFast" parent="EnemiesFast" instance=ExtResource("6_pc3nb")]
+[node name="EnemyFast" type="CharacterBody2D" parent="EnemiesFast"]
 position = Vector2(755, 308)
 up_direction = Vector2(0.707107, 0.707107)
+script = ExtResource("4_d7m3c")
 speed = 100
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="EnemiesFast/EnemyFast"]
+sprite_frames = SubResource("SpriteFrames_1sfn8")
+animation = &"walking"
+frame_progress = 0.0284771
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemiesFast/EnemyFast"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_saph5")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="EnemiesFast/EnemyFast"]
+replication_config = SubResource("SceneReplicationConfig_juy8a")
+
+[node name="Camera2D" type="Camera2D" parent="EnemiesFast/EnemyFast"]
+limit_left = 0
+limit_top = 0
+limit_bottom = 0
+position_smoothing_enabled = true
+
+[node name="RayCastDownLeft" type="RayCast2D" parent="EnemiesFast/EnemyFast"]
+position = Vector2(-7, 16)
+target_position = Vector2(2.08165e-12, 5)
+
+[node name="RayCastDownRight" type="RayCast2D" parent="EnemiesFast/EnemyFast"]
+position = Vector2(6, 16)
+target_position = Vector2(2.08165e-12, 5)
+
+[node name="RayCastLeft" type="RayCast2D" parent="EnemiesFast/EnemyFast"]
+target_position = Vector2(-15, 2.08165e-12)
+
+[node name="RayCastRight" type="RayCast2D" parent="EnemiesFast/EnemyFast"]
+rotation = 3.14159
+target_position = Vector2(-15, 2.08165e-12)
+
+[node name="DeathArea2D" type="Area2D" parent="EnemiesFast/EnemyFast"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemiesFast/EnemyFast/DeathArea2D"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_cxy14")
 
 [node name="LaserTriggers" type="Node" parent="."]
 
@@ -4126,6 +4260,8 @@ libraries = {
 "": SubResource("AnimationLibrary_t2iad")
 }
 
+[connection signal="body_entered" from="Enemies/Enemy/DeathArea2D" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="EnemiesFast/EnemyFast/DeathArea2D" to="." method="_on_death_area_body_entered"]
 [connection signal="body_entered" from="LaserTriggers/Laser1TriggerWeight" to="." method="_on_laser_1_trigger_weight_body_entered"]
 [connection signal="body_entered" from="LaserTriggers/Laser1TriggerWeight" to="LaserTriggers/Laser1TriggerWeight" method="_on_body_entered"]
 [connection signal="body_exited" from="LaserTriggers/Laser1TriggerWeight" to="." method="_on_laser_1_trigger_weight_body_exited"]
@@ -4146,12 +4282,23 @@ libraries = {
 [connection signal="body_entered" from="LaserTriggers/Laser5TriggerWeight" to="LaserTriggers/Laser5TriggerWeight" method="_on_body_entered"]
 [connection signal="body_exited" from="LaserTriggers/Laser5TriggerWeight" to="." method="_on_laser_5_trigger_weight_body_exited"]
 [connection signal="body_exited" from="LaserTriggers/Laser5TriggerWeight" to="LaserTriggers/Laser5TriggerWeight" method="_on_body_exited"]
-[connection signal="body_shape_entered" from="Lasers/Laser" to="Lasers/Laser" method="_on_body_shape_entered"]
-[connection signal="body_shape_entered" from="Lasers/Laser2" to="Lasers/Laser2" method="_on_body_shape_entered"]
-[connection signal="body_shape_entered" from="Lasers/Laser3" to="Lasers/Laser3" method="_on_body_shape_entered"]
-[connection signal="body_shape_entered" from="Lasers/Laser4" to="Lasers/Laser4" method="_on_body_shape_entered"]
+[connection signal="body_entered" from="LaserTriggers/Laser" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="LaserTriggers/Laser2" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="LaserTriggers/Laser3" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="LaserTriggers/Laser4" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="LaserTriggers/Laser5" to="." method="_on_death_area_body_entered"]
+[connection signal="body_shape_entered" from="Lasers/Laser" to="." method="_on_death_area_body_entered"]
+[connection signal="body_shape_entered" from="Lasers/Laser2" to="." method="_on_death_area_body_entered"]
+[connection signal="body_shape_entered" from="Lasers/Laser3" to="." method="_on_death_area_body_entered"]
+[connection signal="body_shape_entered" from="Lasers/Laser4" to="." method="_on_death_area_body_entered"]
 [connection signal="body_shape_entered" from="Lasers/Laser5" to="Lasers/Laser5" method="_on_body_shape_entered"]
-[connection signal="body_shape_entered" from="Lasers/Laser6" to="Lasers/Laser6" method="_on_body_shape_entered"]
+[connection signal="body_shape_entered" from="Lasers/Laser6" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="RotatingLasers/RotatingLaser/Laser" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="RotatingLasers/RotatingLaser2/Laser" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="RotatingLasers/RotatingLaser4/Laser" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="RotatingLasers/RotatingLaser5/Laser" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="RotatingLasers/RotatingLaser7/Laser" to="." method="_on_death_area_body_entered"]
+[connection signal="body_entered" from="RotatingLasers/RotatingLaser8/Laser" to="." method="_on_death_area_body_entered"]
 [connection signal="body_entered" from="Teleportation/teleportation" to="." method="_on_teleportation_body_entered"]
 [connection signal="body_entered" from="Teleportation/teleportation2" to="." method="_on_teleportation_2_body_entered"]
 [connection signal="body_entered" from="MovingPlatform/MovingPlatform/platformTrigger" to="." method="_on_platform_trigger_body_entered"]
