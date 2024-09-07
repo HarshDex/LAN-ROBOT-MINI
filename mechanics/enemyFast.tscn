@@ -1,0 +1,145 @@
+[gd_scene load_steps=15 format=3 uid="uid://1blbgueygvxs"]
+
+[ext_resource type="Script" path="res://mechanics/enemy.gd" id="1_d4mt7"]
+[ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="2_80i1m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjwpp"]
+atlas = ExtResource("2_80i1m")
+region = Rect2(208, 116, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m6p6m"]
+atlas = ExtResource("2_80i1m")
+region = Rect2(224, 116, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojdwl"]
+atlas = ExtResource("2_80i1m")
+region = Rect2(240, 116, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imumf"]
+atlas = ExtResource("2_80i1m")
+region = Rect2(256, 116, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drcpy"]
+atlas = ExtResource("2_80i1m")
+region = Rect2(288, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfste"]
+atlas = ExtResource("2_80i1m")
+region = Rect2(304, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rj04"]
+atlas = ExtResource("2_80i1m")
+region = Rect2(320, 112, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj8w8"]
+atlas = ExtResource("2_80i1m")
+region = Rect2(336, 112, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1sfn8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjwpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m6p6m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojdwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imumf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drcpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfste")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rj04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj8w8")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_saph5"]
+size = Vector2(15, 25)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_juy8a"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite:frame")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:process_thread_group")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("AnimatedSprite:flip_h")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("AnimatedSprite:flip_v")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxy14"]
+size = Vector2(30, 25)
+
+[node name="EnemyFast" type="CharacterBody2D"]
+up_direction = Vector2(0.707107, 0.707107)
+script = ExtResource("1_d4mt7")
+speed = 40
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1sfn8")
+animation = &"walking"
+frame_progress = 0.0284771
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_saph5")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_juy8a")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_bottom = 0
+position_smoothing_enabled = true
+
+[node name="RayCastDownLeft" type="RayCast2D" parent="."]
+position = Vector2(-7, 16)
+target_position = Vector2(2.08165e-12, 5)
+
+[node name="RayCastDownRight" type="RayCast2D" parent="."]
+position = Vector2(6, 16)
+target_position = Vector2(2.08165e-12, 5)
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-15, 2.08165e-12)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+rotation = 3.14159
+target_position = Vector2(-15, 2.08165e-12)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_cxy14")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cngjpr8wsvuo6"]
+
+[ext_resource type="FontFile" uid="uid://b10hfmu6n5lca" path="res://fonts/monogram/ttf/monogram.ttf" id="1_0dn7b"]
+
+[sub_resource type="FontFile" id="FontFile_k36xl"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[resource]
+default_font = ExtResource("1_0dn7b")
+default_font_size = 32
+/fonts/font = SubResource("FontFile_k36xl")

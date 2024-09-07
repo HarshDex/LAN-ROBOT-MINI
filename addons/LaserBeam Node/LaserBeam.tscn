@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk1xxjdlsbpmm"]
+
+[ext_resource type="Shader" path="res://addons/LaserBeam Node/LaserBeam.gdshader" id="2_v6l5l"]
+[ext_resource type="Texture2D" uid="uid://3s6bdjalw2jc" path="res://assets/particles/rotated/spark_06_rotated.png" id="3_diwhv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s05vn"]
+shader = ExtResource("2_v6l5l")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ov4om"]
+size = Vector2(32, 2)
+
+[node name="Laser" type="Area2D"]
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_s05vn")
+points = PackedVector2Array(0, 0, 30, 2.08165e-12)
+width = 16.0
+default_color = Color(1, 0, 0, 1)
+texture = ExtResource("3_diwhv")
+texture_mode = 1
+joint_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15, 0)
+shape = SubResource("RectangleShape2D_ov4om")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

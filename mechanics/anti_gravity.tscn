@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://7bb0k5i0stdc"]
+
+[ext_resource type="Shader" path="res://mechanics/anti_gravity.gdshader" id="1_2jgg4"]
+[ext_resource type="Script" path="res://mechanics/anti_gravity.gd" id="1_hwnus"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8xxa"]
+shader = ExtResource("1_2jgg4")
+shader_parameter/color_top = Color(0.0588235, 0.835294, 0.580392, 0)
+shader_parameter/color_stop1 = Color(0.0588235, 0.835294, 0.580392, 0.27451)
+shader_parameter/color_stop2 = Color(0.0588235, 0.835294, 0.580392, 0.392157)
+shader_parameter/color_stop3 = Color(0.0588235, 0.835294, 0.580392, 0.588235)
+shader_parameter/color_bottom = Color(0.0588235, 0.835294, 0.580392, 1)
+shader_parameter/stop1_position = 0.4
+shader_parameter/stop2_position = 1.0
+shader_parameter/stop3_position = 1.0
+shader_parameter/stop4_position = 1.0
+shader_parameter/glow_strength = 0.1
+shader_parameter/glow_radius = 0.0
+shader_parameter/glow_color = Color(0.0588235, 0.835294, 0.580392, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2fmm6"]
+size = Vector2(63, 20)
+
+[sub_resource type="Curve" id="Curve_k3in7"]
+_data = [Vector2(0, 0.189278), 0.0, 0.0, 0, 0, Vector2(0.992268, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r50oe"]
+curve = SubResource("Curve_k3in7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_onyqm"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(30, 1, 1)
+inherit_velocity_ratio = 20.0
+gravity = Vector3(2.08165e-12, -55, 2.08165e-12)
+damping_max = 20.0
+scale_curve = SubResource("CurveTexture_r50oe")
+
+[node name="AntiGravity" type="Area2D"]
+script = ExtResource("1_hwnus")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_e8xxa")
+offset_left = -31.0
+offset_top = -10.0
+offset_right = 31.0
+offset_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_2fmm6")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.0588235, 0.835294, 0.580392, 0.27451)
+position = Vector2(0, 8)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_onyqm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
