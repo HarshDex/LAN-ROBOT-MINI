@@ -1,0 +1,562 @@
+[gd_scene load_steps=19 format=3 uid="uid://u4t0srmnia4j"]
+
+[ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="1_fng8o"]
+[ext_resource type="FontFile" uid="uid://b10hfmu6n5lca" path="res://fonts/monogram/ttf/monogram.ttf" id="2_1rgkf"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cmk35"]
+texture = ExtResource("1_fng8o")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+20:0/0 = 0
+21:0/0 = 0
+22:0/0 = 0
+23:0/0 = 0
+24:0/0 = 0
+25:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+20:1/0 = 0
+21:1/0 = 0
+22:1/0 = 0
+23:1/0 = 0
+24:1/0 = 0
+25:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+16:2/0 = 0
+18:2/0 = 0
+19:2/0 = 0
+20:2/0 = 0
+21:2/0 = 0
+22:2/0 = 0
+23:2/0 = 0
+24:2/0 = 0
+25:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
+16:3/0 = 0
+18:3/0 = 0
+19:3/0 = 0
+20:3/0 = 0
+21:3/0 = 0
+22:3/0 = 0
+23:3/0 = 0
+24:3/0 = 0
+25:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+15:4/0 = 0
+16:4/0 = 0
+18:4/0 = 0
+19:4/0 = 0
+20:4/0 = 0
+21:4/0 = 0
+22:4/0 = 0
+23:4/0 = 0
+24:4/0 = 0
+25:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+13:5/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+16:5/0 = 0
+18:5/0 = 0
+19:5/0 = 0
+20:5/0 = 0
+21:5/0 = 0
+22:5/0 = 0
+23:5/0 = 0
+24:5/0 = 0
+25:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+9:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+16:6/0 = 0
+18:6/0 = 0
+19:6/0 = 0
+20:6/0 = 0
+21:6/0 = 0
+22:6/0 = 0
+23:6/0 = 0
+24:6/0 = 0
+25:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+9:7/0 = 0
+13:7/0 = 0
+14:7/0 = 0
+15:7/0 = 0
+16:7/0 = 0
+18:7/0 = 0
+19:7/0 = 0
+20:7/0 = 0
+21:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+9:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+16:8/0 = 0
+18:8/0 = 0
+19:8/0 = 0
+20:8/0 = 0
+21:8/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+8:9/0 = 0
+9:9/0 = 0
+10:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+15:9/0 = 0
+16:9/0 = 0
+18:9/0 = 0
+19:9/0 = 0
+20:9/0 = 0
+21:9/0 = 0
+22:9/0 = 0
+23:9/0 = 0
+24:9/0 = 0
+25:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+5:10/0 = 0
+6:10/0 = 0
+7:10/0 = 0
+8:10/0 = 0
+9:10/0 = 0
+10:10/0 = 0
+11:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+15:10/0 = 0
+16:10/0 = 0
+18:10/0 = 0
+19:10/0 = 0
+20:10/0 = 0
+21:10/0 = 0
+22:10/0 = 0
+23:10/0 = 0
+24:10/0 = 0
+25:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+6:11/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+9:11/0 = 0
+10:11/0 = 0
+11:11/0 = 0
+13:11/0 = 0
+14:11/0 = 0
+16:11/0 = 0
+18:11/0 = 0
+20:11/0 = 0
+21:11/0 = 0
+22:11/0 = 0
+24:11/0 = 0
+25:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+5:12/0 = 0
+6:12/0 = 0
+7:12/0 = 0
+8:12/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+11:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+15:12/0 = 0
+16:12/0 = 0
+18:12/0 = 0
+19:12/0 = 0
+20:12/0 = 0
+21:12/0 = 0
+22:12/0 = 0
+23:12/0 = 0
+24:12/0 = 0
+25:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+7:13/0 = 0
+8:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+15:13/0 = 0
+16:13/0 = 0
+18:13/0 = 0
+19:13/0 = 0
+20:13/0 = 0
+21:13/0 = 0
+22:13/0 = 0
+23:13/0 = 0
+24:13/0 = 0
+25:13/0 = 0
+13:14/0 = 0
+14:14/0 = 0
+15:14/0 = 0
+16:14/0 = 0
+18:14/0 = 0
+19:14/0 = 0
+20:14/0 = 0
+21:14/0 = 0
+22:14/0 = 0
+23:14/0 = 0
+24:14/0 = 0
+25:14/0 = 0
+13:15/0 = 0
+14:15/0 = 0
+15:15/0 = 0
+16:15/0 = 0
+18:15/0 = 0
+19:15/0 = 0
+20:15/0 = 0
+21:15/0 = 0
+22:15/0 = 0
+23:15/0 = 0
+24:15/0 = 0
+25:15/0 = 0
+13:16/0 = 0
+14:16/0 = 0
+15:16/0 = 0
+16:16/0 = 0
+18:16/0 = 0
+19:16/0 = 0
+20:16/0 = 0
+21:16/0 = 0
+22:16/0 = 0
+23:16/0 = 0
+24:16/0 = 0
+25:16/0 = 0
+13:17/0 = 0
+14:17/0 = 0
+15:17/0 = 0
+16:17/0 = 0
+18:17/0 = 0
+19:17/0 = 0
+20:17/0 = 0
+21:17/0 = 0
+22:17/0 = 0
+23:17/0 = 0
+24:17/0 = 0
+25:17/0 = 0
+13:18/0 = 0
+14:18/0 = 0
+15:18/0 = 0
+16:18/0 = 0
+18:18/0 = 0
+19:18/0 = 0
+20:18/0 = 0
+21:18/0 = 0
+22:18/0 = 0
+23:18/0 = 0
+24:18/0 = 0
+25:18/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8w8pr"]
+sources/0 = SubResource("TileSetAtlasSource_cmk35")
+
+[sub_resource type="Animation" id="Animation_oao0q"]
+resource_name = "loop"
+length = 0.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D/PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gxj56"]
+_data = {
+"loop": SubResource("Animation_oao0q")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_rvjj1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 2, 121, 0, 0, 0, 0, 113, 121, 0, 0, 0, 0, 156, 97, 0, 0, 0, 0, 177, 96, 0, 0, 0, 0, 201, 97, 0, 0, 0, 0, 226, 112, 0, 0, 0, 0, 236, 140, 0, 0, 0, 0, 250, 173, 0, 0, 0, 0, 268, 196, 0, 0, 0, 0, 281, 189, 0, 0, 0, 0, 300, 194, 0, 0, 0, 0, 342, 186)
+}
+point_count = 12
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w547"]
+atlas = ExtResource("1_fng8o")
+region = Rect2(290, 52, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk0hc"]
+atlas = ExtResource("1_fng8o")
+region = Rect2(306, 52, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yoiv4"]
+atlas = ExtResource("1_fng8o")
+region = Rect2(322, 52, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx3nt"]
+atlas = ExtResource("1_fng8o")
+region = Rect2(338, 52, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2snn"]
+atlas = ExtResource("1_fng8o")
+region = Rect2(354, 52, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg5qu"]
+atlas = ExtResource("1_fng8o")
+region = Rect2(370, 52, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppiut"]
+atlas = ExtResource("1_fng8o")
+region = Rect2(386, 52, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3mcj"]
+atlas = ExtResource("1_fng8o")
+region = Rect2(402, 52, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ck61s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8w547")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk0hc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yoiv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lx3nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2snn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg5qu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppiut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3mcj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_s64mb"]
+resource_name = "bot"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path2D/PathFollow2D:progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 750.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jnmxd"]
+_data = {
+"bot": SubResource("Animation_s64mb")
+}
+
+[node name="Menu" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -543.0
+offset_top = -2443.0
+offset_right = 49457.0
+offset_bottom = 2557.0
+color = Color(0.127736, 0.127736, 0.127736, 1)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_8w8pr")
+format = 2
+layer_0/tile_data = PackedInt32Array(655359, 65536, 2, 720895, 65536, 2, 786431, 65536, 2, 851967, 65536, 2, 589824, 65536, 2, 655360, 65536, 2, 720896, 65536, 2, 786432, 65536, 2, 589825, 65536, 2, 655361, 65536, 2, 720897, 65536, 2, 786433, 65536, 2, 589826, 65536, 2, 655362, 65536, 2, 720898, 65536, 2, 786434, 65536, 2, 589827, 65536, 2, 655363, 65536, 2, 720899, 65536, 2, 786435, 65536, 2, 589828, 65536, 2, 655364, 65536, 2, 720900, 65536, 2, 786436, 65536, 2, 589829, 65536, 2, 655365, 65536, 2, 720901, 65536, 2, 786437, 65536, 2, 589830, 65536, 2, 655366, 65536, 2, 589831, 65536, 2, 655367, 65536, 2, 720903, 65536, 2, 786439, 65536, 2, 589832, 65536, 2, 655368, 65536, 2, 720904, 65536, 2, 786440, 65536, 2, 589833, 65536, 2, 655369, 65536, 2, 720905, 65536, 2, 786441, 65536, 2, 851981, 65536, 2, 917517, 65536, 2, 983053, 65536, 2, 1048589, 65536, 2, 851982, 65536, 2, 917518, 65536, 2, 983054, 65536, 2, 1048590, 65536, 2, 851983, 65536, 2, 917519, 65536, 2, 983055, 65536, 2, 1048591, 65536, 2, 851984, 65536, 2, 917520, 65536, 2, 983056, 65536, 2, 1048592, 65536, 2, 851985, 65536, 2, 917521, 65536, 2, 983057, 65536, 2, 1048593, 65536, 2, 851986, 65536, 2, 917522, 65536, 2, 983058, 65536, 2, 1048594, 65536, 2, 851987, 65536, 2, 917523, 65536, 2, 983059, 65536, 2, 1048595, 65536, 2, 851988, 65536, 2, 917524, 65536, 2, 983060, 65536, 2, 1048596, 65536, 2, 851989, 65536, 2, 917525, 65536, 2, 983061, 65536, 2, 1048597, 65536, 2, 851990, 65536, 2, 983062, 65536, 2, 1048598, 65536, 2, 851991, 65536, 2, 917527, 65536, 2, 983063, 65536, 2, 1048599, 65536, 2, 851992, 65536, 2, 917528, 65536, 2, 983064, 65536, 2, 1048600, 65536, 2, 851993, 65536, 2, 917529, 65536, 2, 983065, 65536, 2, 1048601, 65536, 2, 851994, 65536, 2, 917530, 65536, 2, 983066, 65536, 2, 1048602, 65536, 2, 1048609, 65536, 2, 1114145, 65536, 2, 1179681, 65536, 2, 1245217, 65536, 2, 1048610, 65536, 2, 1114146, 65536, 2, 1179682, 65536, 2, 1245218, 65536, 2, 1048611, 65536, 2, 1114147, 65536, 2, 1179683, 65536, 2, 1245219, 65536, 2, 1048612, 65536, 2, 1114148, 65536, 2, 1179684, 65536, 2, 1245220, 65536, 2, 1048613, 65536, 2, 1114149, 65536, 2, 1179685, 65536, 2, 1245221, 65536, 2, 1048614, 65536, 2, 1114150, 65536, 2, 1179686, 65536, 2, 1245222, 65536, 2, 1048615, 65536, 2, 1114151, 65536, 2, 1179687, 65536, 2, 1245223, 65536, 2)
+
+[node name="movingLoop" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gxj56")
+}
+autoplay = "loop"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+offset_right = 640.0
+offset_bottom = 359.0
+color = Color(0, 0, 0, 0.862745)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 219.0
+offset_right = 366.0
+offset_bottom = 250.0
+text = "Start"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 254.0
+offset_right = 375.0
+offset_bottom = 285.0
+text = "About"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 9.0
+offset_top = 336.0
+offset_right = 93.0
+offset_bottom = 359.0
+size_flags_vertical = 8
+text = "version 0.1"
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_rvjj1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(311.12, 191.882)
+rotation = -0.188222
+progress = 375.0
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
+sprite_frames = SubResource("SpriteFrames_ck61s")
+frame = 5
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 157.0
+offset_top = 81.0
+offset_right = 531.0
+offset_bottom = 153.0
+theme_override_colors/font_color = Color(0.921569, 0.34902, 0, 1)
+theme_override_fonts/font = ExtResource("2_1rgkf")
+theme_override_font_sizes/font_size = 90
+text = "Binary Bots"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jnmxd")
+}
+autoplay = "bot"

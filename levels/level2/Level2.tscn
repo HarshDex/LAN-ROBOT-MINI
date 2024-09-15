@@ -3214,9 +3214,9 @@ position = Vector2(2707, 792)
 scale = Vector2(10, 1)
 
 [node name="PointLight2D3" type="PointLight2D" parent="Lasers/Laser4"]
-position = Vector2(4.61697, 0.414291)
+position = Vector2(4.54111, 0.413621)
 rotation = 0.00883229
-scale = Vector2(0.037482, 0.147046)
+scale = Vector2(0.040825, 0.147046)
 skew = -0.00894272
 color = Color(1, 1, 1, 0.254902)
 energy = 10.0
@@ -3227,9 +3227,9 @@ position = Vector2(3026, 792)
 scale = Vector2(10, 1)
 
 [node name="PointLight2D4" type="PointLight2D" parent="Lasers/Laser5"]
-position = Vector2(-11.5, -5.96046e-08)
+position = Vector2(-11.5251, -0.000222132)
 rotation = 0.00883229
-scale = Vector2(0.037482, 0.147046)
+scale = Vector2(0.0420989, 0.147046)
 skew = -0.00894272
 color = Color(1, 1, 1, 0.254902)
 energy = 10.0
