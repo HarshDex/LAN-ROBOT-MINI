@@ -8,7 +8,7 @@ var max_players = 2
 @onready var error_dialog = $ErrorWindow
 
 var ip_address
-var level_instance = "res://levels/level3/Level3.tscn"
+var level_instance = "res://levels/level2/Level2.tscn"
 
 func _ready():
 	var get_ip_address = IP.get_local_addresses()

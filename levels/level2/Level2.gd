@@ -191,7 +191,7 @@ func _input(event):
 	if Input.is_action_just_pressed("interact") and door1_interaction == true:
 		$DoorNodes/DoorAnimation.play("door1")
 		$DoorNodes/Door1Trigger/CollisionShape2D.disabled = true
-		$DoorNodes/Door1Trigger.visible = false
+		$DoorNodes/Door1Trigger.visible = true
 		
 	if Input.is_action_just_pressed("interact") and door2_interaction == true:
 		$DoorNodes/DoorAnimation.play("door2")
@@ -668,15 +668,5 @@ func _on_teleportation_12_body_entered(body):
 		
 		
 #<--- teleportation related code--->
-
-
-#<--Trap related code--->
-var trapFlag = 0;
-func _on_trap_area_body_entered(body):
-	if trapFlag == 0: 
-		$DoorNodes/DoorAnimation.play("trapDoorClose")
-		trapFlag = 1
-#<--Trap related code--->
-
 
 

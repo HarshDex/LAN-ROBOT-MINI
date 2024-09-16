@@ -12,4 +12,4 @@ func _process(delta):
 
 
 func _on_animation_finished(anim_name):
-	get_tree().change_scene_to_file("res://lobby.tscn")
+	get_tree().change_scene_to_file("res://Menu.tscn")

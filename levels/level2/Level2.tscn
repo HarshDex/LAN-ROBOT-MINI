@@ -1092,6 +1092,9 @@ properties/14/replication_mode = 1
 properties/15/path = NodePath("Door15:position")
 properties/15/spawn = true
 properties/15/replication_mode = 1
+properties/16/path = NodePath("Door1Trigger/CollisionShape2D:disabled")
+properties/16/spawn = true
+properties/16/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qr7o"]
 size = Vector2(276, 46.75)
