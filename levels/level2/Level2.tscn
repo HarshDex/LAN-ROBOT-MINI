@@ -1,4 +1,4 @@
-[gd_scene load_steps=133 format=3 uid="uid://mmp2pmo0vtin"]
+[gd_scene load_steps=145 format=3 uid="uid://mmp2pmo0vtin"]
 
 [ext_resource type="Script" path="res://levels/level2/Level2.gd" id="1_oo4rn"]
 [ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="2_1g3ej"]
@@ -29,6 +29,11 @@
 [ext_resource type="Script" path="res://levels/level2/Door10WeightTrigger.gd" id="26_4gtn7"]
 [ext_resource type="Script" path="res://levels/level2/Door11WeightTrigger.gd" id="27_yh2i8"]
 [ext_resource type="Script" path="res://levels/level2/Door12WeightTrigger.gd" id="28_mopbs"]
+[ext_resource type="Script" path="res://levels/level1/Menu.gd" id="30_k1k50"]
+[ext_resource type="Script" path="res://levels/level1/SoundPanel.gd" id="31_f15wi"]
+[ext_resource type="Script" path="res://levels/level1/UI.gd" id="32_n727l"]
+[ext_resource type="Texture2D" uid="uid://xxxoofwuemox" path="res://assets/Grey UI buttons.png" id="33_hqkdi"]
+[ext_resource type="AudioStream" uid="uid://byxbarsgo76pe" path="res://sounds/bg/Kubbi Digestive Biscuit.mp3" id="34_8te5f"]
 
 [sub_resource type="Environment" id="Environment_fuqxj"]
 background_mode = 3
@@ -2623,6 +2628,31 @@ _data = {
 "reset": SubResource("Animation_d10xj")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u26oc"]
+bg_color = Color(0.227451, 0.239216, 0.25098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sf75e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8g7r"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kp2nq"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_73yt7"]
+texture = ExtResource("33_hqkdi")
+region_rect = Rect2(16, 16, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kohbr"]
+texture = ExtResource("33_hqkdi")
+region_rect = Rect2(16, 16, 16, 16)
+modulate_color = Color(0.351563, 0.351563, 0.351563, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xtwgg"]
+texture = ExtResource("33_hqkdi")
+region_rect = Rect2(16, 16, 16, 16)
+modulate_color = Color(0.051971, 0.051971, 0.051971, 1)
+
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_oo4rn")
 player_scene = ExtResource("2_6ag4i")
@@ -4913,6 +4943,227 @@ libraries = {
 "": SubResource("AnimationLibrary_paxqj")
 }
 
+[node name="Menu" type="CanvasLayer" parent="."]
+script = ExtResource("30_k1k50")
+
+[node name="SettingsPanel" type="Panel" parent="Menu"]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.5
+offset_top = -112.5
+offset_right = 187.5
+offset_bottom = 112.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_u26oc")
+
+[node name="SettingsLabel" type="Label" parent="Menu/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.0
+offset_top = 1.0
+offset_right = 43.0
+offset_bottom = 32.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "Settings"
+
+[node name="RestartSettings" type="Button" parent="Menu/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -50.5
+offset_right = 41.0
+offset_bottom = -19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Restart"
+
+[node name="AboutSettings" type="Button" parent="Menu/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = 29.5
+offset_right = 41.0
+offset_bottom = 60.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "About"
+
+[node name="SoundSettings" type="Button" parent="Menu/SettingsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -10.5
+offset_right = 41.0
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Sound"
+
+[node name="AboutPanel" type="Panel" parent="Menu/SettingsPanel"]
+visible = false
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sf75e")
+
+[node name="Label" type="Label" parent="Menu/SettingsPanel/AboutPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -77.0
+offset_right = 170.0
+offset_bottom = 67.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_a8g7r")
+text = "Developed by DreamcatStudios
+---------------------------------------------------------------------------------
+Code & Level Design: Jatin, Harsh
+Sound Design: Various Artists (CC0)
+Contact: dreamcatstudios010@gmail.com
+version 0.1
+---------------------------------------------------------------------------------"
+
+[node name="AboutBack" type="Button" parent="Menu/SettingsPanel/AboutPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 190.0
+offset_right = 55.0
+offset_bottom = 215.0
+theme_override_font_sizes/font_size = 12
+text = "Back"
+
+[node name="SoundPanel" type="Panel" parent="Menu/SettingsPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00266667
+anchor_right = 1.00267
+anchor_bottom = 1.0
+offset_right = -1.69277e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kp2nq")
+script = ExtResource("31_f15wi")
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicLabel" type="Label" parent="Menu/SettingsPanel/SoundPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.5
+offset_top = -67.5
+offset_right = 29.5
+offset_bottom = -44.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Music - "
+
+[node name="VolumeSlider" type="HSlider" parent="Menu/SettingsPanel/SoundPanel/MusicLabel"]
+layout_mode = 0
+offset_left = -87.0
+offset_top = 33.0
+offset_right = 147.0
+offset_bottom = 49.0
+max_value = 1.0
+step = 0.01
+
+[node name="Label2" type="Label" parent="Menu/SettingsPanel/SoundPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -11.5
+offset_right = 20.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "SFX - "
+
+[node name="HSlider" type="HSlider" parent="Menu/SettingsPanel/SoundPanel/Label2"]
+layout_mode = 0
+offset_left = -96.0
+offset_top = 32.0
+offset_right = 138.0
+offset_bottom = 48.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="SoundBack" type="Button" parent="Menu/SettingsPanel/SoundPanel"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 190.0
+offset_right = 55.0
+offset_bottom = 220.0
+theme_override_font_sizes/font_size = 12
+text = "Back"
+
+[node name="SettingsBack" type="Button" parent="Menu/SettingsPanel"]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 3.0
+offset_right = 373.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 14
+text = "X"
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("32_n727l")
+
+[node name="Pause" type="Button" parent="UI"]
+z_index = 5
+offset_left = 608.0
+offset_top = 9.0
+offset_right = 628.0
+offset_bottom = 29.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_73yt7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kohbr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_xtwgg")
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("34_8te5f")
+volume_db = -15.0
+autoplay = true
+
 [connection signal="body_entered" from="Enemies/Enemy/DeathArea2D" to="." method="_on_death_area_body_entered"]
 [connection signal="body_entered" from="Enemies/Enemy2/DeathArea2D" to="." method="_on_death_area_body_entered"]
 [connection signal="body_entered" from="Enemies/Enemy3/DeathArea2D" to="." method="_on_death_area_body_entered"]
@@ -5007,3 +5258,10 @@ libraries = {
 [connection signal="body_exited" from="DoorNodes/Door12WeightTrigger" to="." method="_on_door_12_weight_trigger_body_exited"]
 [connection signal="body_entered" from="DoorNodes/Door12WeightTrigger2" to="." method="_on_door_12_weight_trigger_body_entered"]
 [connection signal="body_exited" from="DoorNodes/Door12WeightTrigger2" to="." method="_on_door_12_weight_trigger_body_exited"]
+[connection signal="pressed" from="Menu/SettingsPanel/RestartSettings" to="Menu" method="_on_restart_settings_pressed"]
+[connection signal="pressed" from="Menu/SettingsPanel/AboutSettings" to="Menu" method="_on_about_settings_pressed"]
+[connection signal="pressed" from="Menu/SettingsPanel/SoundSettings" to="Menu" method="_on_sound_settings_pressed"]
+[connection signal="pressed" from="Menu/SettingsPanel/AboutPanel/AboutBack" to="Menu" method="_on_about_back_pressed"]
+[connection signal="pressed" from="Menu/SettingsPanel/SoundPanel/SoundBack" to="Menu" method="_on_sound_back_pressed"]
+[connection signal="pressed" from="Menu/SettingsPanel/SettingsBack" to="Menu" method="_on_settings_back_pressed"]
+[connection signal="pressed" from="UI/Pause" to="UI" method="_on_pause_pressed"]

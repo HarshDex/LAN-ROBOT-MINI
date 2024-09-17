@@ -29,3 +29,11 @@ func _on_sound_settings_pressed():
 
 func _on_settings_back_pressed():
 	$".".visible = false
+
+
+func _on_sound_back_pressed():
+	$SettingsPanel/SoundPanel.visible = false
+
+
+func _on_about_back_pressed():
+	$SettingsPanel/AboutPanel.visible = false

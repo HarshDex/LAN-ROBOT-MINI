@@ -13,11 +13,5 @@ func _process(delta):
 
 func _on_pause_pressed():
 	$"../Menu".visible = true
+	$"../Menu/SettingsPanel".visible = true
 
-
-func _on_about_back_pressed():
-	$"../Menu/SettingsPanel/AboutPanel".visible = false
-
-
-func _on_sound_back_pressed():
-	$"../Menu/SettingsPanel/SoundPanel".visible = false
