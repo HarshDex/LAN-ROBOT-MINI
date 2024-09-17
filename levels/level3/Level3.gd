@@ -173,15 +173,6 @@ var _door_states = {
 	"door10": false,
 }
 
-@export var door_states: Dictionary:
-	get:
-		return _door_states
-	set(value):
-		for key in value:
-			if _door_states.has(key) and _door_states[key] != value[key]:
-				_door_states[key] = value[key]
-				if multiplayer.is_server():
-					rpc("sync_door_state", key, _door_states[key])
 
 
 

@@ -166,6 +166,25 @@ var door13_interaction = false
 var door14_interaction = false
 
 
+var _door_states = {
+	"door1": true,
+	"door2": false,
+	"door3": false,
+	"door4": false,
+	"door5": false,
+	"door6": false,
+	"door7": false,
+	"door8": false,
+	"door9": false,
+	"door10": false,
+	"door11": false,
+	"door12": false,
+	"door13": false,
+	"door14": false
+}
+
+
+
 #<---for laser---->
 var laser_interaction = false
 var laser1_interaction = false
@@ -186,33 +205,47 @@ func _on_laser_death_area_body_entered(body):
 			body.rpc("player_died", player_id)
 
 
+
 func _input(event):
 	#<---door related---->
-	if Input.is_action_just_pressed("interact") and door1_interaction == true:
-		$DoorNodes/DoorAnimation.play("door1")
-		$DoorNodes/Door1Trigger/CollisionShape2D.disabled = true
-		$DoorNodes/Door1Trigger.visible = true
+	if Input.is_action_just_pressed("interact"):
+			for i in range(1, 11):  # Doors 1 to 9
+				if get("door{0}_interaction".format([i])) == true:
+					rpc("activate_door", i)
 		
 	if Input.is_action_just_pressed("interact") and door2_interaction == true:
 		$DoorNodes/DoorAnimation.play("door2")
-		$DoorNodes/Door2Trigger/CollisionShape2D.disabled = true
 		$DoorNodes/Door2Trigger.visible = false
+
+	if Input.is_action_just_pressed("interact") and door4_interaction == true:
+		$DoorNodes/DoorAnimation.play("door4")
+		$DoorNodes/Door4Trigger.visible = false
 		
+	if Input.is_action_just_pressed("interact") and door5_interaction == true:
+		$DoorNodes/DoorAnimation.play("door5")
+		$DoorNodes/Door5Trigger.visible = false
+		
+	if Input.is_action_just_pressed("interact") and door6_interaction == true:
+		$DoorNodes/DoorAnimation.play("door6")
+		$DoorNodes/Door6Trigger.visible = false
+	
 	if Input.is_action_just_pressed("interact") and door7_interaction == true:
 		$DoorNodes/DoorAnimation.play("door7")
-		$DoorNodes/Door7Trigger/CollisionShape2D.disabled = true
 		$DoorNodes/Door7Trigger.visible = false
 		
-	if Input.is_action_just_pressed("interact") and door13_interaction == true:
-		$DoorNodes/DoorAnimation.play("door13")
-		$DoorNodes/Door13Trigger/CollisionShape2D.disabled = true
-		$DoorNodes/Door13Trigger.visible = false
+	if Input.is_action_just_pressed("interact") and door8_interaction == true:
+		$DoorNodes/DoorAnimation.play("door8")
+		$DoorNodes/Door8Trigger.visible = false
 		
-	if Input.is_action_just_pressed("interact") and door14_interaction == true:
-		$DoorNodes/DoorAnimation.play("door14")
-		$DoorNodes/Door14Trigger/CollisionShape2D.disabled = true
-		$DoorNodes/Door14Trigger.visible = false
-	#<---door related---->
+	if Input.is_action_just_pressed("interact") and door9_interaction == true:
+		$DoorNodes/DoorAnimation.play("door9")
+		$DoorNodes/Door9Trigger.visible = false
+		
+	if Input.is_action_just_pressed("interact") and door10_interaction == true:
+		$DoorNodes/DoorAnimation.play("door10")
+		$DoorNodes/Door10Trigger.visible = false
+			
+	#<---Door related---->
 	
 	#<----laser related---->
 	if Input.is_action_just_pressed("interact") and laser1_interaction == true:
@@ -670,3 +703,10 @@ func _on_teleportation_12_body_entered(body):
 #<--- teleportation related code--->
 
 
+
+#<---- RPC Calls Over Network for Door ---->
+@rpc("any_peer", "call_local") func activate_door(door_number):
+	var door_key = "door{0}".format([door_number])
+	_door_states[door_key] = true
+	$DoorNodes/DoorAnimation.play(door_key)
+	get_node("DoorNodes/Door{0}Trigger".format([door_number])).visible = false
