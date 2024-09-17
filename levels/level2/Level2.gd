@@ -713,3 +713,21 @@ func _on_teleportation_12_body_entered(body):
 	_door_states[door_key] = true
 	$DoorNodes/DoorAnimation.play(door_key)
 	get_node("DoorNodes/Door{0}Trigger".format([door_number])).visible = false
+
+
+
+
+
+#<--- Level Change Related Code ---->
+
+func _on_level_transition_body_entered(body):
+	$Transitions/TransitionPlayer.play("transition")
+
+func _on_transition_player_animation_finished(anim_name):
+	get_tree().change_scene_to_file("res://levels/level3/Level3.tscn")
+
+#<--- Level Change Related Code ---->
+
+
+
+

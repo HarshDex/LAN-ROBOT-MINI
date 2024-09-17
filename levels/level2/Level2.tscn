@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=3 uid="uid://mmp2pmo0vtin"]
+[gd_scene load_steps=147 format=3 uid="uid://mmp2pmo0vtin"]
 
 [ext_resource type="Script" path="res://levels/level2/Level2.gd" id="1_oo4rn"]
 [ext_resource type="Texture2D" uid="uid://c85ls4bn2wdt" path="res://assets/16x16 Robot Tileset v1.png" id="2_1g3ej"]
@@ -1102,7 +1102,7 @@ properties/16/spawn = true
 properties/16/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qr7o"]
-size = Vector2(276, 46.75)
+size = Vector2(296, 43.75)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kcxps"]
 texture = ExtResource("2_1g3ej")
@@ -2652,6 +2652,39 @@ modulate_color = Color(0.351563, 0.351563, 0.351563, 1)
 texture = ExtResource("33_hqkdi")
 region_rect = Rect2(16, 16, 16, 16)
 modulate_color = Color(0.051971, 0.051971, 0.051971, 1)
+
+[sub_resource type="Animation" id="Animation_xyicx"]
+resource_name = "transition"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6va44"]
+_data = {
+"transition": SubResource("Animation_xyicx")
+}
 
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_oo4rn")
@@ -4917,13 +4950,13 @@ replication_config = SubResource("SceneReplicationConfig_28jo7")
 
 [node name="Texts" type="Node" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Texts"]
+[node name="LevelTransition" type="Area2D" parent="Texts"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Texts/StaticBody2D"]
-position = Vector2(6905, 824.625)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Texts/LevelTransition"]
+position = Vector2(6904, 823.125)
 shape = SubResource("RectangleShape2D_0qr7o")
 
-[node name="Sprite2D" type="Sprite2D" parent="Texts/StaticBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Texts/LevelTransition"]
 position = Vector2(6905, 825)
 scale = Vector2(0.31517, 0.553238)
 texture = ExtResource("18_qciqp")
@@ -5164,6 +5197,21 @@ stream = ExtResource("34_8te5f")
 volume_db = -15.0
 autoplay = true
 
+[node name="Transitions" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Transitions"]
+modulate = Color(1, 1, 1, 0)
+z_index = 20
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
+[node name="TransitionPlayer" type="AnimationPlayer" parent="Transitions"]
+libraries = {
+"": SubResource("AnimationLibrary_6va44")
+}
+
 [connection signal="body_entered" from="Enemies/Enemy/DeathArea2D" to="." method="_on_death_area_body_entered"]
 [connection signal="body_entered" from="Enemies/Enemy2/DeathArea2D" to="." method="_on_death_area_body_entered"]
 [connection signal="body_entered" from="Enemies/Enemy3/DeathArea2D" to="." method="_on_death_area_body_entered"]
@@ -5258,6 +5306,7 @@ autoplay = true
 [connection signal="body_exited" from="DoorNodes/Door12WeightTrigger" to="." method="_on_door_12_weight_trigger_body_exited"]
 [connection signal="body_entered" from="DoorNodes/Door12WeightTrigger2" to="." method="_on_door_12_weight_trigger_body_entered"]
 [connection signal="body_exited" from="DoorNodes/Door12WeightTrigger2" to="." method="_on_door_12_weight_trigger_body_exited"]
+[connection signal="body_entered" from="Texts/LevelTransition" to="." method="_on_level_transition_body_entered"]
 [connection signal="pressed" from="Menu/SettingsPanel/RestartSettings" to="Menu" method="_on_restart_settings_pressed"]
 [connection signal="pressed" from="Menu/SettingsPanel/AboutSettings" to="Menu" method="_on_about_settings_pressed"]
 [connection signal="pressed" from="Menu/SettingsPanel/SoundSettings" to="Menu" method="_on_sound_settings_pressed"]
@@ -5265,3 +5314,4 @@ autoplay = true
 [connection signal="pressed" from="Menu/SettingsPanel/SoundPanel/SoundBack" to="Menu" method="_on_sound_back_pressed"]
 [connection signal="pressed" from="Menu/SettingsPanel/SettingsBack" to="Menu" method="_on_settings_back_pressed"]
 [connection signal="pressed" from="UI/Pause" to="UI" method="_on_pause_pressed"]
+[connection signal="animation_finished" from="Transitions/TransitionPlayer" to="." method="_on_transition_player_animation_finished"]

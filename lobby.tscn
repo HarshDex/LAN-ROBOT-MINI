@@ -18,7 +18,7 @@ theme = ExtResource("1_m06y4")
 script = ExtResource("1_t5nsh")
 
 [node name="Panel" type="Panel" parent="."]
-modulate = Color(0.505882, 0.521569, 0.533333, 0.607843)
+modulate = Color(0.539, 0.539, 0.539, 0.862745)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

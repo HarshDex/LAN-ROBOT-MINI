@@ -290,3 +290,19 @@ func _on_death_area_2d_body_entered(body):
 		body.rpc("player_died", player_id)
 
 #<--- Enemy Related Code ---->
+
+
+
+#<--- Level Change Related Code ---->
+
+func _on_level_change_area_body_entered(body):
+	$Transitions/TransitionPlayer.play("transition")
+	
+func _on_transition_player_animation_finished(anim_name):
+	get_tree().change_scene_to_file("res://levels/level2/Level2.tscn")
+
+
+
+#<--- Level Change Related Code ---->
+
+
