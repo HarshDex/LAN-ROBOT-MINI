@@ -4687,7 +4687,7 @@ region_enabled = true
 region_rect = Rect2(0, 48, 48, 16)
 
 [node name="Door3" type="StaticBody2D" parent="DoorNodes"]
-position = Vector2(2464, 562)
+position = Vector2(2464, 482)
 rotation = 1.5708
 scale = Vector2(1.65, 1.3)
 

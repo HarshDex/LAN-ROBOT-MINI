@@ -1,7 +1,10 @@
 extends Node2D
 
-@export var spawn_points: Array[Vector2] = [Vector2(86, 300), Vector2(90, 300)]
+#@export var spawn_points: Array[Vector2] = [Vector2(86, 300), Vector2(90, 300)]
+
+#Test Spawns
 #@export var spawn_points: Array[Vector2] = [Vector2(1117, 125), Vector2(1111, 120)]
+@export var spawn_points: Array[Vector2] = [Vector2(1809, 636), Vector2(1830, 636)]
 @export var player_scene: PackedScene
 
 @onready var animation_player = $Platforms/PlatformAnimation
@@ -186,7 +189,7 @@ var _door_states = {
 
 
 #<---for laser---->
-var laser_interaction = false
+var laser_death = true #basically I am using it for death parameter
 var laser1_interaction = false
 var laser2_interaction = false
 var laser10_interaction = false
@@ -197,10 +200,9 @@ var laser7_interaction = false
 
 
 func _on_laser_death_area_body_entered(body):
-	if(laser_interaction == false):
-		print("Player dead af")
+	if(laser_death == true):
 		if body.is_in_group("player"):
-			print("death")
+			print("Player dead af by laser")
 			var player_id = int(str(body.name).replace("player_", ""))
 			body.rpc("player_died", player_id)
 
@@ -209,7 +211,7 @@ func _on_laser_death_area_body_entered(body):
 func _input(event):
 	#<---door related---->
 	if Input.is_action_just_pressed("interact"):
-			for i in range(1, 11):  # Doors 1 to 9
+			for i in range(1, 14):  # Doors 1 to 9
 				if get("door{0}_interaction".format([i])) == true:
 					rpc("activate_door", i)
 		
@@ -526,28 +528,28 @@ func _on_laser_10_trigger_body_exited(body):
 func _on_laser_1_trigger_weight_body_entered(body):
 	if body.is_in_group("player") or body.is_in_group("boxes"):
 		laser1_interaction = true
-		laser_interaction = true
+		laser_death = false
 		$LaserTriggers/Laser.visible = false
 		$LaserTriggers/Laser/CollisionShape2D.disabled = true
 
 
 func _on_laser_1_trigger_weight_body_exited(body):
-	laser_interaction = false
+	laser_death = true 
 	$LaserTriggers/Laser.visible = true
 	$LaserTriggers/Laser/CollisionShape2D.disabled = false
 	
 
 func _on_laser_2_trigger_weight_body_entered(body):
 	if body.is_in_group("player") or body.is_in_group("boxes"):
-		laser_interaction = true
+		laser_death = false
 		laser2_interaction = false
 		$LaserTriggers/Laser2.visible = false
 
 
 func _on_laser_2_trigger_weight_body_exited(body):
 	$LaserTriggers/Laser2.visible = true
-	laser_interaction = false
-	
+	laser_death = true
+
 
 
 #<--- Laser Weight Trigger related code ---->
@@ -707,6 +709,7 @@ func _on_teleportation_12_body_entered(body):
 #<---- RPC Calls Over Network for Door ---->
 @rpc("any_peer", "call_local") func activate_door(door_number):
 	var door_key = "door{0}".format([door_number])
+	print("door key: ", door_key)
 	_door_states[door_key] = true
 	$DoorNodes/DoorAnimation.play(door_key)
 	get_node("DoorNodes/Door{0}Trigger".format([door_number])).visible = false
