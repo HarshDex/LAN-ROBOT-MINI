@@ -1108,7 +1108,7 @@ properties/11/spawn = true
 properties/11/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r6ke7"]
-size = Vector2(245.069, 45.5)
+size = Vector2(216.097, 45.5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6wht6"]
 texture = ExtResource("5_064ee")
@@ -4296,15 +4296,15 @@ replication_config = SubResource("SceneReplicationConfig_161pb")
 
 [node name="Texts" type="Node" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Texts"]
+[node name="LevelTransition" type="Area2D" parent="Texts"]
 position = Vector2(-1541, -360)
 scale = Vector2(0.999569, 1.0003)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Texts/StaticBody2D"]
-position = Vector2(6920.46, 824)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Texts/LevelTransition"]
+position = Vector2(6905.97, 824)
 shape = SubResource("RectangleShape2D_r6ke7")
 
-[node name="LanRobots" type="Sprite2D" parent="Texts/StaticBody2D"]
+[node name="LanRobots" type="Sprite2D" parent="Texts/LevelTransition"]
 position = Vector2(6905.98, 825.749)
 scale = Vector2(0.211248, 0.466802)
 texture = ExtResource("18_rck8y")
@@ -4544,7 +4544,7 @@ stream = ExtResource("22_b1djn")
 volume_db = -15.0
 autoplay = true
 
-[node name="Transitions" type="Node" parent="."]
+[node name="Transitions" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="Transitions"]
 modulate = Color(1, 1, 1, 0)
@@ -4642,6 +4642,7 @@ libraries = {
 [connection signal="body_exited" from="DoorNodes/Door9Trigger" to="DoorNodes/Door9Trigger" method="_on_body_exited"]
 [connection signal="body_entered" from="DoorNodes/Door10Trigger" to="." method="_on_door_10_trigger_body_entered"]
 [connection signal="body_exited" from="DoorNodes/Door10Trigger" to="." method="_on_door_10_trigger_body_exited"]
+[connection signal="body_entered" from="Texts/LevelTransition" to="." method="_on_level_transition_body_entered"]
 [connection signal="pressed" from="Menu/SettingsPanel/RestartSettings" to="Menu" method="_on_restart_settings_pressed"]
 [connection signal="pressed" from="Menu/SettingsPanel/AboutSettings" to="Menu" method="_on_about_settings_pressed"]
 [connection signal="pressed" from="Menu/SettingsPanel/SoundSettings" to="Menu" method="_on_sound_settings_pressed"]
@@ -4649,3 +4650,4 @@ libraries = {
 [connection signal="pressed" from="Menu/SettingsPanel/SoundPanel/SoundBack" to="Menu" method="_on_sound_back_pressed"]
 [connection signal="pressed" from="Menu/SettingsPanel/SettingsBack" to="Menu" method="_on_settings_back_pressed"]
 [connection signal="pressed" from="UI/Pause" to="UI" method="_on_pause_pressed"]
+[connection signal="animation_finished" from="Transitions/TransitionPlayer" to="." method="_on_transition_player_animation_finished"]

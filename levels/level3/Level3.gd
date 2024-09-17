@@ -783,3 +783,13 @@ func _on_platform_trigger7_body_exited(body):
 
 
 
+#<--- Level Change Related Code ---->
+
+func _on_level_transition_body_entered(body):
+	$Transitions/TransitionPlayer.play("transition")
+
+func _on_transition_player_animation_finished(anim_name):
+	get_tree().change_scene_to_file("res://credits.tscn")
+
+
+#<--- Level Change Related Code ---->

@@ -293,14 +293,14 @@ func _on_death_area_2d_body_entered(body):
 
 
 
+
 #<--- Level Change Related Code ---->
 
-func _on_level_change_area_body_entered(body):
+func _on_level_transition_body_entered(body):
 	$Transitions/TransitionPlayer.play("transition")
-	
-func _on_transition_player_animation_finished(anim_name):
-	get_tree().change_scene_to_file("res://levels/level2/Level2.tscn")
 
+func _on_transition_player_animation_finished(anim_name):
+	get_tree().change_scene_to_file("res://credits.tscn")
 
 
 #<--- Level Change Related Code ---->

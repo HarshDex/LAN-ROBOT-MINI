@@ -3805,13 +3805,13 @@ position = Vector2(290, 182)
 scale = Vector2(0.291282, 0.454545)
 texture = ExtResource("15_ehm8f")
 
-[node name="LevelChangeArea" type="Area2D" parent="WelcomeImage"]
+[node name="LevelTransition" type="Area2D" parent="WelcomeImage"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WelcomeImage/LevelChangeArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WelcomeImage/LevelTransition"]
 position = Vector2(4495, 554)
 shape = SubResource("RectangleShape2D_s0r76")
 
-[node name="Level2→" type="Sprite2D" parent="WelcomeImage/LevelChangeArea"]
+[node name="Level2→" type="Sprite2D" parent="WelcomeImage/LevelTransition"]
 position = Vector2(4501, 550)
 scale = Vector2(0.207207, 0.352273)
 texture = ExtResource("16_qpeyr")
@@ -4103,7 +4103,7 @@ libraries = {
 [connection signal="body_entered" from="LazerWeights/Laser" to="." method="_on_death_laser_body_entered"]
 [connection signal="body_entered" from="LazerWeights/LazerTriggerWeight" to="." method="_on_lazer_trigger_weight_body_entered"]
 [connection signal="body_exited" from="LazerWeights/LazerTriggerWeight" to="." method="_on_lazer_trigger_weight_body_exited"]
-[connection signal="body_entered" from="WelcomeImage/LevelChangeArea" to="." method="_on_level_change_area_body_entered"]
+[connection signal="body_entered" from="WelcomeImage/LevelTransition" to="." method="_on_level_change_area_body_entered"]
 [connection signal="pressed" from="Menu/SettingsPanel/RestartSettings" to="Menu" method="_on_restart_settings_pressed"]
 [connection signal="pressed" from="Menu/SettingsPanel/AboutSettings" to="Menu" method="_on_about_settings_pressed"]
 [connection signal="pressed" from="Menu/SettingsPanel/SoundSettings" to="Menu" method="_on_sound_settings_pressed"]
